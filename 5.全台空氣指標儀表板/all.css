@@ -1,0 +1,367 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+* {
+  font-family: HELVETICA;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+* img {
+  max-width: 100%;
+  height: auto;
+}
+
+html {
+  background-color: #E8E8E8;
+  position: relative;
+}
+
+.bg-level1 {
+  background-color: #95F084;
+}
+
+.bg-level2 {
+  background-color: #FFE695;
+}
+
+.bg-level3 {
+  background-color: #FFAF6A;
+}
+
+.bg-level4 {
+  background-color: #FF5757;
+}
+
+.bg-level5 {
+  background-color: #9777FF;
+}
+
+.bg-level6 {
+  background-color: #AD1774;
+}
+
+.bm-1 {
+  border-bottom: 1px solid black;
+}
+
+.container {
+  padding: 40px 85px;
+  width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  height: 130px;
+  margin-bottom: 35px;
+}
+
+.title-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+}
+
+.title-bar h1 {
+  font: normal normal bold 40px/60px 'Noto Sans CJK TC';
+}
+
+.title-bar select,
+.title-bar option {
+  width: 100%;
+  height: 56px;
+  font-size: 24px;
+  padding: 13px 20px;
+  font: normal normal bold 16px/24px 'Noto Sans CJK TC';
+  border: 3px solid #000000;
+}
+
+.standard {
+  min-width: 500px;
+  width: 65%;
+  height: 90%;
+  display: table;
+  border-collapse: collapse;
+}
+
+.standard .num {
+  display: table-row;
+  height: 50%;
+}
+
+.standard .num div {
+  width: calc(100% / 6);
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  border: 3px solid #000000;
+  font: normal normal bold 16px/24px 'Open Sans';
+}
+
+.standard .info {
+  display: table-row;
+  height: 50%;
+}
+
+.standard .info div {
+  width: calc(100% / 6);
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  border: 3px solid #000000;
+  font: normal normal bold 16px/24px 'Noto Sans CJK TC';
+  background-color: #fff;
+}
+
+.divider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 35px;
+}
+
+.divider .countyName {
+  margin-right: 10px;
+  font: normal normal bold 36px/54px 'Noto Sans CJK TC';
+}
+
+.divider .line {
+  width: 70%;
+  position: relative;
+}
+
+.divider .line::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  border-top: 3px dashed #000000;
+}
+
+.divider .time-area {
+  margin-left: 10px;
+  font: normal normal bold 16px/24px 'Noto Sans CJK TC';
+}
+
+.divider .time-area .time {
+  font: normal normal bold 16px/24px 'Open Sans';
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.nowSite .site {
+  cursor: auto;
+  margin-bottom: 0;
+}
+
+.otherValueList {
+  width: 100%;
+  border: 3px solid #000000;
+  border-top: 0;
+  padding: 15px 30px;
+  background-color: #fff;
+}
+
+.otherValueList .siteOtherValue {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 15px 0;
+}
+
+.otherValueList .siteOtherValue .otherValueName {
+  font: normal normal bold 24px/36px 'Noto Sans CJK TC';
+}
+
+.otherValueList .siteOtherValue .otherValueName span {
+  font: normal normal normal 16px/24px 'Open Sans';
+}
+
+.otherValueList .siteOtherValue .otherValueNum {
+  font: normal normal bold 24px/36px 'Open Sans';
+}
+
+.allCounty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  width: 730px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.site {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 350px;
+  margin-bottom: 32px;
+  border: 3px solid #000000;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  height: 100px;
+  cursor: pointer;
+}
+
+.site .siteName {
+  font: normal normal bold 36px/100px 'Noto Sans CJK TC';
+  width: 50%;
+  height: 100%;
+  background-color: white;
+}
+
+.site .siteAQI {
+  font: normal normal bold 48px/100px 'Open Sans';
+  width: 50%;
+  height: 100%;
+  border-left: 3px solid #000;
+}
+
+.footer {
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+
+.footer div {
+  width: 1280px;
+  padding: 0 85px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer div .footerChi {
+  font: normal normal bold 16px/24px 'Open Sans';
+}
+
+.footer div .footerEn {
+  font: normal normal normal 16px/24px 'Open Sans';
+}
+
+.loading {
+  opacity: 0.9;
+  background-image: url(./images/loadin.gif);
+  background-color: #37475d;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-position: center center;
+  background-repeat: no-repeat;
+  top: 0;
+  z-index: 64;
+}

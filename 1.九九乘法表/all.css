@@ -1,0 +1,210 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+* {
+  font-family: HELVETICA;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+* img {
+  max-width: 100%;
+  height: auto;
+}
+
+.wrap {
+  width: 1280px;
+  height: 1372px;
+  margin: auto;
+  background-color: #F0F0F0;
+}
+
+.content {
+  padding: 80px 85px 40px 85px;
+  color: #2EB738;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.content .block {
+  width: 350px;
+  height: 366px;
+  margin-bottom: 40px;
+}
+
+.title-block {
+  position: relative;
+}
+
+.title-block .title-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  width: 280px;
+  margin: auto;
+  border-top: 1px solid #2EB738;
+  border-bottom: 1px solid #2EB738;
+}
+
+.title-block .title-text p {
+  font-family: '蘋方-繁';
+  font-size: 56px;
+  line-height: 78px;
+  letter-spacing: 0px;
+}
+
+.title-block .title-text .title-en {
+  font-family: 'Helvetica Neue';
+  font-size: 24px;
+  letter-spacing: 0px;
+}
+
+.title-block .x {
+  font-size: 24px;
+  line-height: 20px;
+  font-family: 'Helvetica Neue Regular';
+  color: #2EB738;
+  position: absolute;
+}
+
+.title-block .x-right-top,
+.title-block .x-right-bottom {
+  right: 0;
+}
+
+.title-block .x-right-top,
+.title-block .x-left-top {
+  top: -12px;
+}
+
+.title-block .x-right-bottom,
+.title-block .x-left-bottom {
+  bottom: -6px;
+}
+
+.number-block {
+  background-color: white;
+  height: 200px;
+  -webkit-box-shadow: 0px 3px 10px #D8D8D8;
+          box-shadow: 0px 3px 10px #D8D8D8;
+  border-radius: 100px 0px 30px 0px;
+  padding: 64px 40px;
+  font-family: 'Helvetica Neue';
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.number-block .number-title {
+  font-size: 128px;
+  font-weight: bold;
+  text-shadow: 4px 3px 0px #F0F0F0;
+  text-align: center;
+  width: 105px;
+}
+
+.number-block .number-count {
+  font-size: 24px;
+  line-height: 1.5;
+  letter-spacing: 1.1px;
+}
+
+footer {
+  width: 100%;
+  height: 34px;
+  background-color: #2EB738;
+  padding: 0 85px;
+}
+
+footer p {
+  color: #F0F0F0;
+  font-size: 16px;
+  text-align: right;
+  line-height: 34px;
+}

@@ -1,0 +1,131 @@
+@import "reset";
+$color-green:#2EB738;
+$color-grey:#F0F0F0;
+
+* {
+    font-family: HELVETICA;
+    box-sizing: border-box;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.wrap {
+    width: 1280px;
+    height: 1372px;
+    margin: auto;
+    background-color: $color-grey;
+}
+
+.content {
+    padding: 80px 85px 40px 85px;
+    color: $color-green;
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+
+    .block {
+        width: 350px;
+        height: 366px;
+        margin-bottom: 40px;
+    }
+}
+
+.title-block {
+    position: relative;
+
+    .title-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+        width: 280px;
+        margin: auto;
+        border-top: 1px solid #2EB738;
+        border-bottom: 1px solid #2EB738;
+
+        p {
+            font-family: '蘋方-繁';
+            font-size: 56px;
+            line-height: 78px;
+            letter-spacing: 0px;
+        }
+
+        .title-en {
+            font-family: 'Helvetica Neue';
+            font-size: 24px;
+            letter-spacing: 0px;
+        }
+    }
+
+    .x {
+        font-size: 24px;
+        line-height: 20px;
+        font-family: 'Helvetica Neue Regular';
+        color: $color-green;
+        position: absolute;
+    }
+
+    .x-right-top,
+    .x-right-bottom {
+        right: 0;
+    }
+
+    .x-right-top,
+    .x-left-top {
+        top: -12px;
+    }
+
+    .x-right-bottom,
+    .x-left-bottom {
+        bottom: -6px;
+    }
+
+}
+
+.number-block {
+    background-color: white;
+    height: 200px;
+    box-shadow: 0px 3px 10px #D8D8D8;
+    border-radius: 100px 0px 30px 0px;
+    padding: 64px 40px;
+    font-family: 'Helvetica Neue';
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-between;
+
+    .number-title {
+        font-size: 128px;
+        font-weight: bold;
+        text-shadow: 4px 3px 0px #F0F0F0;
+        text-align: center;
+        width: 105px;
+    }
+
+    .number-count {
+        font-size: 24px;
+        line-height: 1.5;
+        letter-spacing: 1.1px;
+    }
+}
+
+
+footer {
+    width: 100%;
+    height: 34px;
+    background-color: #2EB738;
+    padding: 0 85px;
+
+    p {
+        color: $color-grey;
+        font-size: 16px;
+        text-align: right;
+        line-height: 34px;
+    }
+}

@@ -1,0 +1,85 @@
+@import "reset";
+
+* {
+    font-family: HELVETICA;
+    box-sizing: border-box;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.bgc-black{
+    background-color: black;
+    color: white;
+}
+.bgc-white{
+    background-color: white;
+    color: black;
+}
+
+html {
+    background-color: #E8E8E8;
+}
+
+.container {
+    width: 540px;
+    font-family: 'Open Sans';
+    color: #000000;
+    margin: 72px auto;
+
+    .h1 {
+        font: normal normal 800 68px/72px "Open Sans";
+        border-top: 10px solid black;
+        border-bottom: 10px solid black;
+        margin-bottom: 35px;
+    }
+}
+
+.time-zone {
+    display: flex;
+    width: 100%;
+    height: 104px;
+    flex-direction: row;
+    border: 1px solid black;
+    padding: 16px 40px;
+
+    div {
+        width: 50%;
+    }
+}
+
+
+.nameDay {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .city {
+        font: normal normal bold 36px/49px 'Open Sans';
+    }
+
+    .day {
+        font: italic normal bold 16px/22px 'Open Sans';
+    }
+}
+
+.time {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .now-time {
+        font: normal normal bold 72px/98px 'Open Sans';
+    }
+}
+
+.text {
+    display: block;
+    width: 50vw;
+    font-size: 16px;
+    color: blue;
+    margin: 40px auto;
+    line-height: 24px;
+}

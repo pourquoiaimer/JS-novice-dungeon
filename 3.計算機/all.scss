@@ -1,0 +1,109 @@
+@import "reset";
+
+* {
+    font-family: HELVETICA;
+    box-sizing: border-box;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+html {
+    background-color: #E8E8E8;
+}
+h1{
+    font-size: 40px;
+    color: red;
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 1.5;
+}
+.container {
+    margin: calc(50vh - 260px) auto;
+    width: 350px;
+    height: 550px;
+    box-shadow: 0px 20px 40px hsla(0, 0%, 0%, 0.4);
+    // border-radius: 20px;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+
+}
+
+.countArea {
+    background-color: #041936;
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    text-align: right;
+    padding: 10px 16px;
+    overflow: hidden;
+}
+
+.passCount {
+    font-size: 16px;
+    color: #00C4FF;
+    line-height: 30px;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.nowCount {
+    font-size: 56px;
+    color: white;
+    line-height: 60px;
+}
+
+.btnArea {
+    display: grid;
+    background-color: #062145;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    font-size: 24px;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    padding: 12.5px 10px;
+}
+
+.grid-item {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    color: white;
+    line-height: 75px;
+
+    &:hover {
+        box-shadow: 0px 0px 1px #00C4FF;
+        cursor: pointer;
+    }
+}
+
+.operator {
+    background-color: #041936;
+}
+
+.num,
+.cancel,
+.point {
+    box-shadow: 0px 0px 4px #00C4FF;
+}
+
+.cancel {
+    color: #00C4FF;
+}
+
+.answer {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    background: transparent linear-gradient(90deg, #00C4FF 0%, #6C00FF 100%) 0% 0% no-repeat padding-box;
+    border-radius: 16px;
+}
+
+.text{
+    display: block;
+    width: 50vw;
+    font-size: 16px;
+    color: blue;
+    margin: 40px auto;
+    line-height: 24px;
+}

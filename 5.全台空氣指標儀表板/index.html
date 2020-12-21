@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全台空氣指標儀表板</title>
+    
+    <link rel="stylesheet" href="./all.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title-bar">
+                <h1>空氣品質指標(AQI)</h1>
+                <select name="" id="selectCounty">
+                    <option disabled selected value="請選擇地區">請選擇城市</option>
+                </select>
+            </div>
+            <div class="standard">
+                <div class="num">
+                    <div class="bg-level1">0~50</div>
+                    <div class="bg-level2">51~100</div>
+                    <div class="bg-level3">101~150</div>
+                    <div class="bg-level4">151~200</div>
+                    <div class="bg-level5">201~300</div>
+                    <div class="bg-level6">301~400</div>
+                </div>
+
+                <div class="info">
+                    <div>良好</div>
+                    <div>普通</div>
+                    <div>對敏感族群<br> 不健康</div>
+                    <div>對所有族群<br> 不健康</div>
+                    <div>非常不健康</div>
+                    <div>危害</div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="divider">
+            <span class="countyName">
+                請選城市
+            </span>
+            <div class="line"></div>
+            <div class="time-area"><span class="time">2019-01-24 14:00</span> 更新</div>
+        </div>
+        <div class="main">
+            <div class="nowSite">
+            </div>
+            <div class="allCounty">
+
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div>
+            <span class="footercChi">資料來源：行政院環境保護署</span>
+            <span class="footerEn">Copyright © 2019 HexSchool. All rights reserved.</span>
+        </div>
+    </div>
+    <div class="loading" >        
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="./all.js"></script>
+</body>
+
+</html>

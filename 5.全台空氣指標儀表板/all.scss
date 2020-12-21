@@ -1,0 +1,265 @@
+@import "reset";
+$level-1 : #95F084;
+$level-2 :#FFE695;
+$level-3 :#FFAF6A;
+$level-4 :#FF5757;
+$level-5 :#9777FF;
+$level-6 :#AD1774;
+
+* {
+    font-family: HELVETICA;
+    box-sizing: border-box;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+html {
+    background-color: #E8E8E8;
+    position: relative;
+}
+
+.bg-level1 {
+    background-color: $level-1;
+}
+
+.bg-level2 {
+    background-color: $level-2;
+}
+
+.bg-level3 {
+    background-color: $level-3;
+}
+
+.bg-level4 {
+    background-color: $level-4;
+}
+
+.bg-level5 {
+    background-color: $level-5;
+}
+
+.bg-level6 {
+    background-color: $level-6;
+}
+
+.bm-1 {
+    border-bottom: 1px solid black;
+}
+
+.container {
+    padding: 40px 85px;
+    width: 1280px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 130px;
+    margin-bottom: 35px;
+}
+
+.title-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    h1 {
+        font: normal normal bold 40px/60px 'Noto Sans CJK TC';
+    }
+
+    select,
+    option {
+        width: 100%;
+        height: 56px;
+        font-size: 24px;
+        padding: 13px 20px;
+        font: normal normal bold 16px/24px 'Noto Sans CJK TC';
+        border: 3px solid #000000;
+    }
+}
+
+.standard {
+    min-width: 500px;
+    width: 65%;
+    height: 90%;
+    display: table;
+    border-collapse: collapse;
+
+    .num {
+        display: table-row;
+        height: 50%;
+
+        div {
+            width: calc(100% / 6);
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            border: 3px solid #000000;
+            font: normal normal bold 16px/24px 'Open Sans';
+        }
+    }
+
+    .info {
+        display: table-row;
+        height: 50%;
+
+        div {
+            width: calc(100% / 6);
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            border: 3px solid #000000;
+            font: normal normal bold 16px/24px 'Noto Sans CJK TC';
+            background-color: #fff;
+        }
+    }
+}
+
+.divider {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+
+    .countyName {
+        margin-right: 10px;
+        font: normal normal bold 36px/54px 'Noto Sans CJK TC';
+    }
+
+    .line {
+        width: 70%;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            border-top: 3px dashed #000000;
+        }
+    }
+
+    .time-area {
+        margin-left: 10px;
+        font: normal normal bold 16px/24px 'Noto Sans CJK TC';
+
+        .time {
+            font: normal normal bold 16px/24px 'Open Sans';
+        }
+    }
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nowSite {
+
+    .site {
+        cursor:auto;
+        margin-bottom: 0;
+    }
+}
+
+.otherValueList {
+    width: 100%;
+    border: 3px solid #000000;
+    border-top: 0;
+    padding: 15px 30px;
+    background-color: #fff;
+
+    .siteOtherValue {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px 0;
+
+        .otherValueName {
+            font: normal normal bold 24px/36px 'Noto Sans CJK TC';
+
+            span {
+                font: normal normal normal 16px/24px 'Open Sans';
+            }
+        }
+
+        .otherValueNum {
+            font: normal normal bold 24px/36px 'Open Sans';
+        }
+    }
+
+}
+
+.allCounty {
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-start;
+    width: 730px;
+    flex-wrap: wrap;
+}
+
+.site {
+    display: flex;
+    width: 350px;
+    margin-bottom: 32px;
+    border: 3px solid #000000;
+    align-items: center;
+    text-align: center;
+    height: 100px;
+cursor: pointer;
+    .siteName {
+        font: normal normal bold 36px/100px 'Noto Sans CJK TC';
+        width: 50%;
+        height: 100%;
+        background-color: white;
+    }
+
+    .siteAQI {
+        font: normal normal bold 48px/100px 'Open Sans';
+        width: 50%;
+        height: 100%;
+        border-left: 3px solid #000;
+    }
+}
+
+.footer{
+    width: 100%;
+    background-color: black;
+    color: white;
+    div{
+        width: 1280px;
+        padding: 0 85px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .footerChi{
+            font: normal normal bold 16px/24px 'Open Sans';
+        }
+        .footerEn{
+            font: normal normal normal 16px/24px 'Open Sans';
+        }
+    }
+
+}
+
+.loading{
+    opacity: 0.9 ;
+    background-image: url(./images/loadin.gif);
+    background-color: rgb(55,71,93);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-position: center center;
+    background-repeat: no-repeat;
+    top: 0;
+    z-index: 64;
+}
