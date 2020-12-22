@@ -1,0 +1,230 @@
+@import "reset";
+$color-orange:#FF9D00;
+
+
+* {
+    box-sizing: border-box;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+body {
+
+    background-color: $color-orange;
+}
+
+.container {
+    margin: 0 auto;
+    height: 100vh;
+    min-width: 760px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.startPage {
+    min-width: 760px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 100px;
+
+        .title-num {
+            font: normal normal bold 240px/249px 'Roboto Condensed';
+            letter-spacing: 0px;
+            color: #FFFFFF;
+            text-shadow: 12px 0px 0px #000000;
+            margin-right: 24px;
+        }
+
+        .title-text {
+            max-width: 480px;
+            display: flex;
+            flex-wrap: wrap;
+            font: normal normal bold 96px/96px 'Roboto Condensed';
+            color: #000000;
+            letter-spacing: 0px;
+
+            span {
+                margin: auto 5px;
+                text-align: center;
+                height: 50%;
+                font: normal normal bold 44px/40px 'Roboto Condensed';
+                color: white;
+                border-bottom: 8px double white;
+            }
+        }
+    }
+
+    .startBtn {
+        font: normal normal bold 36px/36px 'Roboto Condensed';
+        padding: 10px 0;
+        letter-spacing: 0px;
+        color: $color-orange;
+        width: 350px;
+        background: #000000 0% 0% no-repeat;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: white;
+        }
+    }
+
+    .info {
+        font: italic normal normal 24px/28px 'Roboto Condensed';
+        color: white;
+    }
+}
+
+///gamePage的頭
+.gamePage {
+    min-width: 820px;
+
+    .score-time {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 100px;
+    }
+}
+
+.scoreArea {
+    .score-title {
+        padding: 8px 16px;
+        text-align: center;
+        font: normal normal bold 30px/30px 'Roboto Condensed';
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        border: 4px solid #FFFFFF;
+    }
+
+    .score-count {
+        display: flex;
+
+        .text {
+            padding: 10px 16px;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            text-align: center;
+            font: normal normal bold 30px/30px 'Roboto Condensed';
+            letter-spacing: 0px;
+            color: $color-orange;
+        }
+
+        .score {
+            padding: 5px 10px;
+            font: normal normal bold 44px/44px 'Roboto Condensed';
+            letter-spacing: 0px;
+            color: #000000;
+        }
+    }
+}
+
+.time {
+    text-align: center;
+    font: italic normal bold 96px/96px 'Roboto Condensed';
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.gameArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .question {
+        width: 60%;
+        display: flex;
+        justify-content: space-around;
+
+        span {
+            margin: 0 5px;
+            font: normal normal bold 112px/150px 'Roboto Condensed';
+        }
+
+        .operator {
+            color: white;
+        }
+    }
+
+
+
+    .answer {
+        width: 300px;
+        border: none;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        background-color: white;
+        margin-left: 10px;
+        font: normal normal bold 112px/112px 'Roboto Condensed';
+        text-align: center;
+        outline: none;
+        position: relative;
+
+        &::after {
+            content: "press enter to answer";
+            margin-top: 5px;
+            text-align: center;
+            font: italic normal normal 24px/16px 'Roboto Condensed';
+            color: white;
+            position: absolute;
+        }
+    }
+}
+
+///gamePage的尾
+
+.endPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .end-title {
+        padding: 10px 16px;
+        text-align: center;
+        font: normal normal bold 30px/30px 'Roboto Condensed';
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        border: 4px solid #FFFFFF;
+        margin-bottom: 10px;
+    }
+
+    .final-score-title {
+        text-align: center;
+        font: normal normal bold 56px/56px 'Roboto Condensed';
+        color: #FFFFFF;
+
+        span {
+            letter-spacing: 0px;
+            color: black;
+        }
+    }
+
+    .final-score {
+        text-align: center;
+        font: normal normal bold 112px/131px 'Roboto Condensed';
+        letter-spacing: 0px;
+        color: #000000;
+        margin-bottom: 100px;
+    }
+
+    .tryagainBtn {
+        font: normal normal bold 36px/36px 'Roboto Condensed';
+        padding: 10px 0;
+        letter-spacing: 0px;
+        color: $color-orange;
+        width: 350px;
+        background: #000000 0% 0% no-repeat;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: white;
+        }
+    }
+}

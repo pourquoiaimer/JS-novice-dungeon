@@ -1,0 +1,319 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+* img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  background-color: #FF9D00;
+}
+
+.container {
+  margin: 0 auto;
+  height: 100vh;
+  min-width: 760px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.startPage {
+  min-width: 760px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.startPage .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 100px;
+}
+
+.startPage .title .title-num {
+  font: normal normal bold 240px/249px 'Roboto Condensed';
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  text-shadow: 12px 0px 0px #000000;
+  margin-right: 24px;
+}
+
+.startPage .title .title-text {
+  max-width: 480px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font: normal normal bold 96px/96px 'Roboto Condensed';
+  color: #000000;
+  letter-spacing: 0px;
+}
+
+.startPage .title .title-text span {
+  margin: auto 5px;
+  text-align: center;
+  height: 50%;
+  font: normal normal bold 44px/40px 'Roboto Condensed';
+  color: white;
+  border-bottom: 8px double white;
+}
+
+.startPage .startBtn {
+  font: normal normal bold 36px/36px 'Roboto Condensed';
+  padding: 10px 0;
+  letter-spacing: 0px;
+  color: #FF9D00;
+  width: 350px;
+  background: #000000 0% 0% no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.startPage .startBtn:hover {
+  background-color: white;
+}
+
+.startPage .info {
+  font: italic normal normal 24px/28px 'Roboto Condensed';
+  color: white;
+}
+
+.gamePage {
+  min-width: 820px;
+}
+
+.gamePage .score-time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 100px;
+}
+
+.scoreArea .score-title {
+  padding: 8px 16px;
+  text-align: center;
+  font: normal normal bold 30px/30px 'Roboto Condensed';
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  border: 4px solid #FFFFFF;
+}
+
+.scoreArea .score-count {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.scoreArea .score-count .text {
+  padding: 10px 16px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  text-align: center;
+  font: normal normal bold 30px/30px 'Roboto Condensed';
+  letter-spacing: 0px;
+  color: #FF9D00;
+}
+
+.scoreArea .score-count .score {
+  padding: 5px 10px;
+  font: normal normal bold 44px/44px 'Roboto Condensed';
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.time {
+  text-align: center;
+  font: italic normal bold 96px/96px 'Roboto Condensed';
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.gameArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.gameArea .question {
+  width: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.gameArea .question span {
+  margin: 0 5px;
+  font: normal normal bold 112px/150px 'Roboto Condensed';
+}
+
+.gameArea .question .operator {
+  color: white;
+}
+
+.gameArea .answer {
+  width: 300px;
+  border: none;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  background-color: white;
+  margin-left: 10px;
+  font: normal normal bold 112px/112px 'Roboto Condensed';
+  text-align: center;
+  outline: none;
+  position: relative;
+}
+
+.gameArea .answer::after {
+  content: "press enter to answer";
+  margin-top: 5px;
+  text-align: center;
+  font: italic normal normal 24px/16px 'Roboto Condensed';
+  color: white;
+  position: absolute;
+}
+
+.endPage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.endPage .end-title {
+  padding: 10px 16px;
+  text-align: center;
+  font: normal normal bold 30px/30px 'Roboto Condensed';
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  border: 4px solid #FFFFFF;
+  margin-bottom: 10px;
+}
+
+.endPage .final-score-title {
+  text-align: center;
+  font: normal normal bold 56px/56px 'Roboto Condensed';
+  color: #FFFFFF;
+}
+
+.endPage .final-score-title span {
+  letter-spacing: 0px;
+  color: black;
+}
+
+.endPage .final-score {
+  text-align: center;
+  font: normal normal bold 112px/131px 'Roboto Condensed';
+  letter-spacing: 0px;
+  color: #000000;
+  margin-bottom: 100px;
+}
+
+.endPage .tryagainBtn {
+  font: normal normal bold 36px/36px 'Roboto Condensed';
+  padding: 10px 0;
+  letter-spacing: 0px;
+  color: #FF9D00;
+  width: 350px;
+  background: #000000 0% 0% no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.endPage .tryagainBtn:hover {
+  background-color: white;
+}
