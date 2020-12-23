@@ -26,11 +26,13 @@ var app = new Vue({
             //抓陣列進去資料庫
         },
         removeTodo: function (thisTodo) { //刪去todo事項        
-            let newIndex = this.todos.findIndex(function (item, key) { //在todos陣列中，找尋id與現在點擊的id一樣的，傳出其陣列序號
-                return thisTodo.id === item.id;
-            })
-            this.todos.splice(newIndex, 1);  //在todos陣列中刪去該序號的值
-            setDataOn(this);
+            if (confirm('確定刪除這一項嗎？')) {
+                let newIndex = this.todos.findIndex(function (item, key) { //在todos陣列中，找尋id與現在點擊的id一樣的，傳出其陣列序號
+                    return thisTodo.id === item.id;
+                })
+                this.todos.splice(newIndex, 1);  //在todos陣列中刪去該序號的值
+                setDataOn(this);
+            }
         },
         editTodo: function (item) {
             this.cacheTodo = item;
@@ -48,14 +50,18 @@ var app = new Vue({
             setDataOn(this);
         },
         removeAll: function () {
-            this.todos = [];
-            setDataOn(this);
+            if (confirm('確定要刪除全部紀錄嗎？')) {
+                this.todos = [];
+                setDataOn(this);
+            }
         },
         removeCompleted: function () {
-            this.todos = this.todos.filter(function (item) {
-                return !item.completed;
-            })
-            setDataOn(this);
+            if (confirm('確定要刪除全部完成的todo嗎？')) {
+                this.todos = this.todos.filter(function (item) {
+                    return !item.completed;
+                })
+                setDataOn(this);
+            }
         },
     },
     computed: {
