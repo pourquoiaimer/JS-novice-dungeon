@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>to do list</title>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.1/css/bootstrap.css' />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .hand {
+            font-size: 20px;
+            color: purple;
+            position: absolute;
+            left: -26px;
+            
+            top:calc(50% - 10px);
+            cursor:grab;
+        }
+
+        .list-group-item {
+            padding: 15px 30px;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,10 +52,13 @@
                     </li>
                 </ul>
             </div>
-            <ul class="list-group list-group-flush text-left">
-                <li class="list-group-item" v-for="(item, key) in filterTodos" @dblclick="editTodo(item)">
+            <ul class="list-group list-group-flush text-left" id='items'>
+                <li class="list-group-item item" v-for="(item, key) in filterTodos" @dblclick="editTodo(item)">
                     <div class="d-flex" v-if="item.id !==cacheTodo.id">
                         <div class="form-check">
+                            <span class="material-icons hand">
+                                pets
+                            </span>
                             <input type="checkbox" class="form-check-input" v-model="item.completed" :id="item.id">
                             <label class="form-check-label" :for="item.id" :class="{'completed' :item.completed}">
                                 {{item.title}}
@@ -87,7 +106,7 @@
         firebase.analytics();
     </script>
 
-
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.9.0/Sortable.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="./all.js"></script>
 </body>

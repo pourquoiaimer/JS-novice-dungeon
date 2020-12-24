@@ -111,16 +111,20 @@ var app = new Vue({
 
 function getDataFirst(datas) {
     db.ref('/todoList/mytodo').once('value', function (snapshot) {
-        let data = snapshot.val();
-        console.log(typeof (data));
-        console.log(data[0]);
-        if (!data) {
-            return;
-        } else {
-            for (let i = 0; i < data.length; i++) {
-                datas.todos.push(data[i]);
+        if (snapshot) {
+            let data = snapshot.val();
+            if (!data) {
+                return;
+            } else {
+                for (let i = 0; i < data.length; i++) {
+                    datas.todos.push(data[i]);
+                }
             }
+        } else {
+            alert('沒連網路還是firbase有狀況，抓不到原本的記事喔？')
+
         }
+
     });
 }
 
@@ -190,3 +194,19 @@ function updateToFirebase() {
 function cleanAll() {
     db.ref().remove();
 }
+
+
+//sortable.js的設定
+var el = document.getElementById( "items" );
+Sortable.create(el, {
+    // 參數設定[註1]
+    disabled: false, // 關閉Sortable
+    animation: 150,  // 物件移動時間(單位:毫秒)
+    handle: ".hand",  // 可拖曳的區域
+    filter: "",  // 過濾器，不能拖曳的物件
+    preventOnFilter: true, // 當過濾器啟動的時候，觸發event.preventDefault()
+    draggable: ".item",  // 可拖曳的物件
+    ghostClass: "sortable-ghost",  // 拖曳時，給予物件的類別
+    chosenClass: "sortable-chosen",  // 選定時，給予物件的類別
+    forceFallback: false  // 忽略HTML5 DnD
+});
