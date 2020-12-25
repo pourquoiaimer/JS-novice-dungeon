@@ -95,3 +95,19 @@ img {
   background-size: cover;
   background-position: center center;
 }
+
+.l {
+  border-left: none;
+}
+
+.r {
+  border-right: none;
+}
+
+.t {
+  border-top: none;
+}
+
+.b {
+  border-bottom: none;
+}
