@@ -67,7 +67,7 @@ img {
 }
 
 .grid-container {
-  margin: auto;
+  margin: 100px auto;
   display: -ms-grid;
   display: grid;
   width: 60vh;
