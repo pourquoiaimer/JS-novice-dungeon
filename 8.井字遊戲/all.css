@@ -66,8 +66,21 @@ img {
   height: auto;
 }
 
+html {
+  background-color: black;
+}
+
+.wrap h1 {
+  font-size: 60px;
+  color: red;
+  text-align: center;
+  margin: 50px 0;
+  line-height: 1.2;
+}
+
 .grid-container {
-  margin: 100px auto;
+  margin: 0 auto;
+  padding: 10px;
   display: -ms-grid;
   display: grid;
   width: 60vh;
@@ -81,7 +94,7 @@ img {
 }
 
 .grid-item {
-  border: 1px solid black;
+  border: 3px solid red;
 }
 
 .bgc-hei {
