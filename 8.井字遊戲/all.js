@@ -78,7 +78,6 @@ function jugement() {
 function overRound() { //在jugement之後，切換到下個回合
     if (jugement()) {
         alert(`${nowUser.name}贏了！！！！！`)
-        console.log(nowUser);
         nowUser.win += 1;
         eval(`score.${nowUser.name}=${nowUser.win}`);
         localStorage.setItem('score', JSON.stringify(score));
@@ -90,9 +89,20 @@ function overRound() { //在jugement之後，切換到下個回合
         $('.grid-item').removeClass('bgc-pai');
         $('.grid-item').removeClass('bgc-hei');
     } else {
-        console.log(nowUser);
-        round = round + 1;
-        nowUser = ((round % 2 == 1) ? user1 : user2);
+        if (countGrid() == 0) {
+            alert(`平局！重新再來～`)
+            user1.gotCode = '';
+            user2.gotCode = '';
+            let round = 1;
+            nowUser = ((round % 2 == 1) ? user1 : user2);
+            $('.grid-item').data('occupied', 'false');
+            $('.grid-item').removeClass('bgc-pai');
+            $('.grid-item').removeClass('bgc-hei');
+        } else {
+            console.log(nowUser);
+            round = round + 1;
+            nowUser = ((round % 2 == 1) ? user1 : user2);
+        }
     }
 }
 
@@ -112,3 +122,14 @@ $('.grid-item').on('click', function () {
         // overRound();
     }
 });
+
+function countGrid() {
+    let grid = 9;
+    $('.grid-item').each(function (i, n) {
+        if ($(n).data('occupied') == 'true') {
+            grid -= 1
+        }
+    });
+    console.log(grid);
+    return grid
+}
