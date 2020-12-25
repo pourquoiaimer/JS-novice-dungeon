@@ -1,0 +1,36 @@
+@import "reset";
+
+* {
+    box-sizing: border-box;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+.grid-container {
+    margin: auto;
+    display: grid;
+    width: 60vh;
+    height: 60vh;
+    min-height: 300px;
+    min-width: 300px;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-item {
+    border: 1px solid black;
+}
+
+.bgc-hei {
+    background-image: url(images/hei.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+
+.bgc-pai {
+    background-image: url(images/pai.jpg);
+    background-size: cover;
+    background-position: center center;
+}
