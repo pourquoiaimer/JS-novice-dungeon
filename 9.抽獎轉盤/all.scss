@@ -1,0 +1,39 @@
+@import "reset";
+
+* {
+    box-sizing: border-box;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+// html {
+// background-color: black;
+// }
+.bg-cover {
+    background-size: cover;
+    background-position: center center;
+}
+
+.no-gutter {
+    margin-right: 0;
+    margin-left: 0;
+}
+html{
+    background-color: #5858B9;
+}
+#test {
+    margin: 0 auto;
+    margin-top: 100px;
+    justify-content: center;
+    svg {
+        transform: rotate(30deg);
+    }
+    width: 700px;
+}
+
+g {
+    border: 3px solid purple;
+}
