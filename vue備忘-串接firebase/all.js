@@ -20,6 +20,7 @@ var app = new Vue({
                 id: timesId,
                 title: value,
                 completed: false,
+                num: this.todos.length
             });
             this.newTodo = "";
             setDataOn(this);
@@ -67,9 +68,12 @@ var app = new Vue({
     computed: {
         filterTodos: function () {
             let newTodos = [];
+            this.todos = this.todos.sort(function (a, b) {
+                return a.num - b.num
+            });
             switch (true) {
                 case (this.visibility == "all"):
-                    return this.todos;
+                    newTodos = this.todos;
                     break;
                 case (this.visibility == "active"):
                     this.todos.forEach(function (item) {
@@ -77,7 +81,6 @@ var app = new Vue({
                             newTodos.push(item);
                         }
                     })
-                    return newTodos;
                     break;
                 case (this.visibility == "completed"):
                     this.todos.forEach(function (item) {
@@ -85,10 +88,10 @@ var app = new Vue({
                             newTodos.push(item);
                         }
                     })
-                    return newTodos;
                     break;
                 default:
             }
+            return newTodos;
         },
         countTodos: function () {
             let newTodos = []
@@ -101,7 +104,7 @@ var app = new Vue({
         },
     },
     created() {
-        getDataFirst(this);
+        getData(this);
     },
 })
 
@@ -109,22 +112,24 @@ var app = new Vue({
 
 //firebase的
 
-function getDataFirst(datas) {
-    db.ref('/todoList/mytodo').once('value', function (snapshot) {
+function getData(datas) {
+    db.ref('/todoList/mytodo').on('value', function (snapshot) {
         if (snapshot) {
             let data = snapshot.val();
             if (!data) {
                 return;
             } else {
+                data = data.sort(function(a,b){
+                    return a.num - b.num
+                })
+                datas.todos = [];
                 for (let i = 0; i < data.length; i++) {
                     datas.todos.push(data[i]);
                 }
             }
         } else {
             alert('沒連網路還是firbase有狀況，抓不到原本的記事喔？')
-
         }
-
     });
 }
 
@@ -137,27 +142,6 @@ function setDataOn(data) {
     }).catch(function () {
         alert('可能是伺服器錯誤，請稍後再試');
     });
-}
-
-
-function getdataAll() {  //測試上傳，算是成功吧，暫不使用或至少不動到testAll這個資料夾
-    for (let i = 0; i < dataName.length; i++) {
-        console.log(dataName.length);
-        $.ajax({
-            type: "Get",
-            url: `./test/${dataName[i].name}`,
-            dataType: 'json',
-            contentType: "application/xml; charset=UTF-8",
-            success: function (data) {
-                db.ref(`/testData/${dataName[i].name}`).set(data
-                ).then(function () {
-                    console.log("建立成功");
-                }).catch(function () {
-                    console.log('可能是伺服器錯誤，請稍後再試');
-                });
-            }
-        });
-    }
 }
 
 function pushTest(data) {
@@ -197,16 +181,58 @@ function cleanAll() {
 
 
 //sortable.js的設定
-var el = document.getElementById( "items" );
-Sortable.create(el, {
-    // 參數設定[註1]
+let allData = app._data.todos;
+Sortable.create(document.getElementById("items"), {
     disabled: false, // 關閉Sortable
-    animation: 150,  // 物件移動時間(單位:毫秒)
+    animation: 800,  // 物件移動時間(單位:毫秒)
     handle: ".hand",  // 可拖曳的區域
     filter: "",  // 過濾器，不能拖曳的物件
     preventOnFilter: true, // 當過濾器啟動的時候，觸發event.preventDefault()
     draggable: ".item",  // 可拖曳的物件
     ghostClass: "sortable-ghost",  // 拖曳時，給予物件的類別
     chosenClass: "sortable-chosen",  // 選定時，給予物件的類別
-    forceFallback: false  // 忽略HTML5 DnD
-});
+    forceFallback: false,  // 忽略HTML5 DnD
+    onEnd: function (evt) {
+        let allData = app._data.todos;
+        console.log('onEnd.items:', [evt.oldIndex, evt.newIndex])
+        switch (true) {
+            case evt.oldIndex == evt.newIndex:
+                break;
+            case evt.oldIndex > evt.newIndex: //往前移
+                allData[evt.oldIndex].num = evt.newIndex;
+                for (let i = evt.newIndex; i < evt.oldIndex; i++) {
+                    allData[i].num += 1;
+                    console.log("加一次");
+                }
+                break;
+            case evt.oldIndex < evt.newIndex: //往後移
+                allData[evt.oldIndex].num = evt.newIndex;
+                for (let i = evt.oldIndex + 1; i <= evt.newIndex; i++) {
+                    allData[i].num -= 1;
+                    console.log("減一次");
+                }
+                break;
+            default:
+                break;
+        }
+        allData = allData.sort(function (a, b) {
+            return a.num - b.num
+        });
+        setDataOn(app._data);
+        
+        appData = [];
+        getData(app._data);
+        app._data.visibility = 'completed'
+        app._data.visibility = 'all'
+    },
+})
+
+//4掌握socket的相關知識，包括socket.io?
+
+//改良todoList---周目標---月目標之類的，加上那個拖曳的東西，還有時間的判定？抓加入到行事曆的時間，並與當天做比較，如果違反就呈現某個顏色或者驚嘆號，增加逾期的filter 抓本日和本週，filter做雙重的判斷，增加星星改變顏色
+//掌握webpack
+//整理evenote
+//git指令再複習，作筆記
+//完成--todoList，還需要增加排序，並有存到後端，這樣每次才能正確排序拖曳後的順序，然後加上星號，還是先以增加每行高度，然後把左側欄位做相應動作
+//仔細讀一遍web server 的code，做筆記和註解
+//下午六點確認水果冰淇淋粉專?或許時間上會要前後一點，可以的話之後還是用python做看看爬蟲

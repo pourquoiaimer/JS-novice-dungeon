@@ -118,8 +118,8 @@ $('.grid-item').on('click', function () {
         let str = $(this).data('name');
         nowUser.gotCode = nowUser.gotCode + str;
         console.log(nowUser.gotCode);
-        setTimeout(overRound, 100);
-        // overRound();
+        // setTimeout(overRound, 100);
+        overRound();
     }
 });
 

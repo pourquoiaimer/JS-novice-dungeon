@@ -9,18 +9,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         .hand {
-            font-size: 20px;
-            color: purple;
+            font-size: 30px;
+            color: greenyellow;
             position: absolute;
-            left: -26px;
-            
-            top:calc(50% - 10px);
-            cursor:grab;
+            left: -38px;
+            background-color: blue;
+            border-radius: 50%;
+            top: calc(50% - 15px);
+            cursor: grab;
         }
 
-        .list-group-item {
-            padding: 15px 30px;
-        }
+        /* .list-group-item {
+            padding: 15px 0px;
+        } */
     </style>
 </head>
 
@@ -53,15 +54,16 @@
                 </ul>
             </div>
             <ul class="list-group list-group-flush text-left" id='items'>
-                <li class="list-group-item item" v-for="(item, key) in filterTodos" @dblclick="editTodo(item)">
+                <li class="list-group-item item py-3 pl-5" v-for="(item, key) in filterTodos"
+                    @dblclick="editTodo(item)">
                     <div class="d-flex" v-if="item.id !==cacheTodo.id">
                         <div class="form-check">
                             <span class="material-icons hand">
-                                pets
+                                swap_vert
                             </span>
                             <input type="checkbox" class="form-check-input" v-model="item.completed" :id="item.id">
                             <label class="form-check-label" :for="item.id" :class="{'completed' :item.completed}">
-                                {{item.title}}
+                                {{item.num}} <br> {{item.title}}
                             </label>
                         </div>
                         <button type="button" class="close ml-auto" aria-label="Close" @click="removeTodo(item)">
@@ -79,7 +81,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
