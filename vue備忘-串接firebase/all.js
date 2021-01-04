@@ -1,5 +1,6 @@
 const db = firebase.database();
 var provider = new firebase.auth.GoogleAuthProvider();
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -21,7 +22,6 @@ var app = new Vue({
                 id: timesId,
                 title: value,
                 completed: false,
-                num: this.todos.length
             });
             this.newTodo = "";
             setDataOn(this);
@@ -76,9 +76,6 @@ var app = new Vue({
     computed: {
         filterTodos: function () {
             let newTodos = [];
-            this.todos = this.todos.sort(function (a, b) {
-                return a.num - b.num
-            });
             switch (true) {
                 case (this.visibility == "all"):
                     newTodos = this.todos;
@@ -186,54 +183,6 @@ function updateToFirebase() {
 function cleanAll() {
     db.ref().remove();
 }
-
-
-//sortable.js的設定
-let allData = app._data.todos;
-Sortable.create(document.getElementById("items"), {
-    disabled: false, // 關閉Sortable
-    animation: 800,  // 物件移動時間(單位:毫秒)
-    handle: ".hand",  // 可拖曳的區域
-    filter: "",  // 過濾器，不能拖曳的物件
-    preventOnFilter: true, // 當過濾器啟動的時候，觸發event.preventDefault()
-    draggable: ".item",  // 可拖曳的物件
-    ghostClass: "sortable-ghost",  // 拖曳時，給予物件的類別
-    chosenClass: "sortable-chosen",  // 選定時，給予物件的類別
-    forceFallback: false,  // 忽略HTML5 DnD
-    onEnd: function (evt) {
-        let allData = app._data.todos;
-        console.log('onEnd.items:', [evt.oldIndex, evt.newIndex])
-        switch (true) {
-            case evt.oldIndex == evt.newIndex:
-                break;
-            case evt.oldIndex > evt.newIndex: //往前移
-                allData[evt.oldIndex].num = evt.newIndex;
-                for (let i = evt.newIndex; i < evt.oldIndex; i++) {
-                    allData[i].num += 1;
-                    console.log("加一次");
-                }
-                break;
-            case evt.oldIndex < evt.newIndex: //往後移
-                allData[evt.oldIndex].num = evt.newIndex;
-                for (let i = evt.oldIndex + 1; i <= evt.newIndex; i++) {
-                    allData[i].num -= 1;
-                    console.log("減一次");
-                }
-                break;
-            default:
-                break;
-        }
-        allData = allData.sort(function (a, b) {
-            return a.num - b.num
-        });
-        setDataOn(app._data);
-
-        appData = [];
-        getData(app._data);
-        app._data.visibility = 'completed'
-        app._data.visibility = 'all'
-    },
-})
 
 //4掌握socket的相關知識，包括socket.io?
 
