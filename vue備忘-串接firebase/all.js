@@ -1,4 +1,5 @@
 const db = firebase.database();
+var provider = new firebase.auth.GoogleAuthProvider();
 var app = new Vue({
     el: '#app',
     data: {
@@ -64,6 +65,13 @@ var app = new Vue({
                 setDataOn(this);
             }
         },
+        signInGoogle: function () {
+            firebase.auth().signInWithPopup(provider).then(function (result) {
+                // 可以獲得 Google 提供 token，token可透過 Google API 獲得其他數據。  
+                var token = result.credential.accessToken;
+                var user = result.user;
+            });
+        },
     },
     computed: {
         filterTodos: function () {
@@ -119,7 +127,7 @@ function getData(datas) {
             if (!data) {
                 return;
             } else {
-                data = data.sort(function(a,b){
+                data = data.sort(function (a, b) {
                     return a.num - b.num
                 })
                 datas.todos = [];
@@ -219,7 +227,7 @@ Sortable.create(document.getElementById("items"), {
             return a.num - b.num
         });
         setDataOn(app._data);
-        
+
         appData = [];
         getData(app._data);
         app._data.visibility = 'completed'
