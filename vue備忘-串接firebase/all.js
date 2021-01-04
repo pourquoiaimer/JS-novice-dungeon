@@ -22,6 +22,8 @@ var app = new Vue({
                 id: timesId,
                 title: value,
                 completed: false,
+                important: 1,
+                star:'star_border',
             });
             this.newTodo = "";
             setDataOn(this);
@@ -66,12 +68,34 @@ var app = new Vue({
             }
         },
         signInGoogle: function () {
-            firebase.auth().signInWithPopup(provider).then(function (result) {
-                // 可以獲得 Google 提供 token，token可透過 Google API 獲得其他數據。  
-                var token = result.credential.accessToken;
-                var user = result.user;
-            });
+            firebase.auth()
+                .signInWithPopup(provider)
+                .then((result) => {
+                    var token = credential.accessToken;
+                    var user = result.user;
+                    alert('登入成功')
+                }).catch((error) => {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    // ...
+                });
         },
+        changeStar:function(item){
+            console.log("aa");
+            if(item.star=='star_border'){
+                console.log(item.star);
+                item.star = 'star'
+            }else{
+                console.log(item.star);
+                item.star = 'star_border' 
+            }
+            setDataOn(this);
+        }
     },
     computed: {
         filterTodos: function () {
@@ -124,9 +148,6 @@ function getData(datas) {
             if (!data) {
                 return;
             } else {
-                data = data.sort(function (a, b) {
-                    return a.num - b.num
-                })
                 datas.todos = [];
                 for (let i = 0; i < data.length; i++) {
                     datas.todos.push(data[i]);
@@ -183,13 +204,3 @@ function updateToFirebase() {
 function cleanAll() {
     db.ref().remove();
 }
-
-//4掌握socket的相關知識，包括socket.io?
-
-//改良todoList---周目標---月目標之類的，加上那個拖曳的東西，還有時間的判定？抓加入到行事曆的時間，並與當天做比較，如果違反就呈現某個顏色或者驚嘆號，增加逾期的filter 抓本日和本週，filter做雙重的判斷，增加星星改變顏色
-//掌握webpack
-//整理evenote
-//git指令再複習，作筆記
-//完成--todoList，還需要增加排序，並有存到後端，這樣每次才能正確排序拖曳後的順序，然後加上星號，還是先以增加每行高度，然後把左側欄位做相應動作
-//仔細讀一遍web server 的code，做筆記和註解
-//下午六點確認水果冰淇淋粉專?或許時間上會要前後一點，可以的話之後還是用python做看看爬蟲
