@@ -70,6 +70,7 @@ var app = new Vue({
                 // 可以獲得 Google 提供 token，token可透過 Google API 獲得其他數據。  
                 var token = result.credential.accessToken;
                 var user = result.user;
+                console.log(auth);
             });
         },
     },
