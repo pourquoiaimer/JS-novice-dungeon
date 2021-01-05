@@ -1,6 +1,12 @@
 let db = firebase.database();
 let dbTest = '';
 var provider = new firebase.auth.GoogleAuthProvider();
+let userName = '@@';
+function testb (){db.ref(`/todoList/${testa}`).set(app._data.todos).then(function () {
+    console.log("建立成功");
+}).catch(function () {
+    alert('可能是伺服器錯誤，或者你沒登入，請稍後再試');
+})};
 
 var app = new Vue({
     el: '#app',
@@ -12,6 +18,7 @@ var app = new Vue({
         cacheTitle: {},
         visibility: 'all',
         status: '未登入',
+        userName :'@@',
     },
     methods: {
         addTodo: function () {
@@ -94,13 +101,13 @@ var app = new Vue({
         },
         signOutGoogle: function () {
             firebase.auth().signOut()
-            .then(() => {
-                alert('已經退出登入');
-                this.todos = [];
-                checkStatus();
-            }).catch((error) => {
-                alert('發生錯誤了啦喔')
-            });
+                .then(() => {
+                    alert('已經退出登入');
+                    this.todos = [];
+                    checkStatus();
+                }).catch((error) => {
+                    alert('發生錯誤了啦喔')
+                });
 
         },
         changeStar: function (item) {
@@ -152,8 +159,8 @@ var app = new Vue({
         },
     },
     created() {
+        setTimeout(checkStatus, 3000);
         getData(this)
-        setTimeout(checkStatus, 2000);
     },
 })
 
@@ -162,7 +169,7 @@ var app = new Vue({
 //firebase的
 
 function getData(datas) {
-    db.ref('/todoList/mytodo').on('value', function (snapshot) {
+    db.ref(`/todoList/${userName}`).on('value', function (snapshot) {
         if (snapshot) {
             let data = snapshot.val();
             if (!data) {
@@ -180,56 +187,21 @@ function getData(datas) {
 }
 
 function setDataOn(data) {
-    db.ref('/todoList/mytodo').set(data.todos).then(function () {
+    db.ref(`/todoList/${userName}`).set(data.todos).then(function () {
         console.log("建立成功");
     }).catch(function () {
         alert('可能是伺服器錯誤，請稍後再試');
     });
 }
 
-function pushTest(data) {
-    db.ref('/').push({
-        data
-    }).then(function () {
-        alert("建立成功");
-    }).catch(function () {
-        alert('可能是伺服器錯誤，請稍後再試');
-    });
-}
-
-function setToFirebase() {
-    console.log(dataAll);
-    db.ref('/').set([dataAll[0], dataAll[1]]
-    ).then(function () {
-        alert("建立成功");
-    }).catch(function () {
-        alert('可能是伺服器錯誤，請稍後再試');
-    });
-}
-
-function updateToFirebase() {
-    db.ref('/friend').update({
-        item
-    }).then(function () {
-        alert("建立成功");
-    }).catch(function () {
-        alert('可能是伺服器錯誤，請稍後再試');
-    });
-}
-
-function cleanAll() {
-    db.ref().remove();
-}
-
-
 function checkStatus() {
     if (firebase.auth().currentUser) {
-        // app.$set(app.data,status,'yes');
         app._data.status = 'yes'
         console.log(app._data.status);
-
+        userName = firebase.auth().currentUser.email.split('@')[0];
     } else {
         app._data.status = 'no'
         console.log(app._data.status);
+        userName = '@@';
     }
 }
