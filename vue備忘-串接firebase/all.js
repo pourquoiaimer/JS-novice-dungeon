@@ -93,10 +93,10 @@ var app = new Vue({
 
         },
         signOutGoogle: function () {
-            firebase.auth().signOut().then(() => {
+            firebase.auth().signOut()
+            .then(() => {
                 alert('已經退出登入');
-                // checkStatus(this);
-                getData(this);
+                this.todos = [];
                 checkStatus();
             }).catch((error) => {
                 alert('發生錯誤了啦喔')
