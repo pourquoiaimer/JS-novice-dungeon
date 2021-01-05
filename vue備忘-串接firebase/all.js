@@ -1,4 +1,5 @@
-const db = firebase.database();
+let db = firebase.database();
+let dbTest = '';
 var provider = new firebase.auth.GoogleAuthProvider();
 
 var app = new Vue({
@@ -10,6 +11,7 @@ var app = new Vue({
         cacheTodo: {},
         cacheTitle: {},
         visibility: 'all',
+        status: '未登入',
     },
     methods: {
         addTodo: function () {
@@ -19,11 +21,12 @@ var app = new Vue({
                 return;
             }
             this.todos.push({
+                num: this.todos.length,
                 id: timesId,
                 title: value,
                 completed: false,
                 important: 1,
-                star:'star_border',
+                star: 'star_border',
             });
             this.newTodo = "";
             setDataOn(this);
@@ -71,9 +74,11 @@ var app = new Vue({
             firebase.auth()
                 .signInWithPopup(provider)
                 .then((result) => {
+                    getData(this);
+                    alert('登入成功')
+                    checkStatus();
                     var token = credential.accessToken;
                     var user = result.user;
-                    alert('登入成功')
                 }).catch((error) => {
                     // Handle Errors here.
                     var errorCode = error.code;
@@ -84,18 +89,32 @@ var app = new Vue({
                     var credential = error.credential;
                     // ...
                 });
+
+
         },
-        changeStar:function(item){
+        signOutGoogle: function () {
+            firebase.auth().signOut().then(() => {
+                alert('已經退出登入');
+                // checkStatus(this);
+                getData(this);
+                checkStatus();
+            }).catch((error) => {
+                alert('發生錯誤了啦喔')
+            });
+
+        },
+        changeStar: function (item) {
             console.log("aa");
-            if(item.star=='star_border'){
+            if (item.star == 'star_border') {
                 console.log(item.star);
                 item.star = 'star'
-            }else{
+            } else {
                 console.log(item.star);
-                item.star = 'star_border' 
+                item.star = 'star_border'
             }
             setDataOn(this);
-        }
+        },
+
     },
     computed: {
         filterTodos: function () {
@@ -133,7 +152,8 @@ var app = new Vue({
         },
     },
     created() {
-        getData(this);
+        getData(this)
+        setTimeout(checkStatus, 2000);
     },
 })
 
@@ -159,9 +179,6 @@ function getData(datas) {
     });
 }
 
-
-
-
 function setDataOn(data) {
     db.ref('/todoList/mytodo').set(data.todos).then(function () {
         console.log("建立成功");
@@ -171,7 +188,6 @@ function setDataOn(data) {
 }
 
 function pushTest(data) {
-    console.log(data);
     db.ref('/').push({
         data
     }).then(function () {
@@ -203,4 +219,17 @@ function updateToFirebase() {
 
 function cleanAll() {
     db.ref().remove();
+}
+
+
+function checkStatus() {
+    if (firebase.auth().currentUser) {
+        // app.$set(app.data,status,'yes');
+        app._data.status = 'yes'
+        console.log(app._data.status);
+
+    } else {
+        app._data.status = 'no'
+        console.log(app._data.status);
+    }
 }

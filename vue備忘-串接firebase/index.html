@@ -25,13 +25,21 @@
             color: red;
             cursor: pointer;
         }
+        .status{
+            font-size: 18px;   
+        }
     </style>
 </head>
 
 <body>
     <div id="app" class="container my-3">
-        <div class="col">
-            <button class="btn btn-primary ml-auto mb-3 signInGoogle" @click='signInGoogle'>google登入</button>
+        <div class="col px-0">
+            <button class="btn btn-primary mr-2 mb-3 signBtn" @click='signInGoogle'>google登入</button>
+            <button class="btn btn-primary mr-2 mb-3 signBtn" @click='signOutGoogle'>google註銷帳號</button>
+            <!-- <span class="status" v-for="item in status">登入狀態 : {{item}} </span> -->
+
+            <span class="status" v-if = 'status =="no" '>登入狀態 : 未登入</span>
+            <span class="status" v-if = 'status =="yes" '>登入狀態 : 已登入</span>
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
