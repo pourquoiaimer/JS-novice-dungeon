@@ -2,6 +2,7 @@ let db = firebase.database();
 let dbTest = '';
 var provider = new firebase.auth.GoogleAuthProvider();
 let userName = '@@';
+let nowDate = new Date();
 function testb() {
     db.ref(`/todoList/${testa}`).set(app._data.todos).then(function () {
         console.log("建立成功");
@@ -20,11 +21,14 @@ var app = new Vue({
         cacheTitle: {},
         visibility: 'all',
         status: '未登入',
+        today:'',
     },
     methods: {
         addTodo: function () {
             let value = this.newTodo.trim();
             let timesId = Math.floor(Date.now());
+            let newDate = new Date();
+            let today = `${newDate.getFullYear()}-${(fixDate(newDate.getMonth()+1))}-${fixDate(newDate.getDate())}` 
             if (!value) {
                 return;
             }
@@ -35,6 +39,8 @@ var app = new Vue({
                 completed: false,
                 important: 1,
                 star: 'star_border',
+                birth: today,
+                deadline:'day'
             });
             this.newTodo = "";
             setDataOn(this);
@@ -158,7 +164,8 @@ var app = new Vue({
         },
     },
     created() {
-        setTimeout(checkStatus, 3000);
+        setTimeout(checkStatus, 2000);
+        this._data.today = `${nowDate.getFullYear()}-${(fixDate(nowDate.getMonth()+1))}-${fixDate(nowDate.getDate())}`;
     },
 })
 
@@ -193,7 +200,7 @@ function setDataOn(data) {
     });
 }
 
-function checkStatus() {
+function checkStatus() { //確認登入狀況
     if (firebase.auth().currentUser) {
         app._data.status = 'yes'
         console.log(app._data.status);
@@ -208,3 +215,10 @@ function checkStatus() {
 }
 
 
+function fixDate(num){
+    if (num<10){
+        return '0'+num
+    } else{
+        return num
+    }
+};
