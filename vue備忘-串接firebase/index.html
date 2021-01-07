@@ -27,6 +27,7 @@
 
         .status {
             font-size: 18px;
+            color: white;
         }
 
         .today {
@@ -49,8 +50,8 @@
             <button class="btn btn-light text-primary ml-3 signBtn" @click='signOutGoogle'>退出帳號</button>
             <!-- <span class="status" v-for="item in status">登入狀態 : {{item}} </span> -->
 
-            <span class="status" v-if='status =="no" '>登入狀態 : 未登入</span>
-            <span class="status" v-if='status =="yes" '>登入狀態 : 已登入</span>
+            <span class="status ml-3" v-if='status =="no" '>登入狀態 : 未登入</span>
+            <span class="status ml-3" v-if='status =="yes" '>登入狀態 : 已登入</span>
             <span class="ml-auto today">今天是 {{today}}</span>
         </div>
         <div 
