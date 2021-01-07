@@ -1,15 +1,28 @@
+let isTest = true;
 let db = firebase.database();
 let dbTest = '';
 var provider = new firebase.auth.GoogleAuthProvider();
 let userName = '@@';
 let nowDate = new Date();
-function testb() {
-    db.ref(`/todoList/${testa}`).set(app._data.todos).then(function () {
-        console.log("建立成功");
-    }).catch(function () {
-        alert('可能是伺服器錯誤，或者你沒登入，請稍後再試');
-    })
-};
+let fakeTodos = [{
+    num: 0,
+    id: 0,
+    title: '測試',
+    completed: false,
+    important: 1,
+    star: 'star_border',
+    birth: 2021 - 01 - 07,
+    deadline: 'day'
+}, {
+    num: 0,
+    id: 1,
+    title: 'test',
+    completed: false,
+    important: 1,
+    star: 'star_border',
+    birth: 2021 - 01 - 07,
+    deadline: 'day'
+}]
 
 var app = new Vue({
     el: '#app',
@@ -21,14 +34,14 @@ var app = new Vue({
         cacheTitle: {},
         visibility: 'all',
         status: '未登入',
-        today:'',
+        today: '',
     },
     methods: {
         addTodo: function () {
             let value = this.newTodo.trim();
             let timesId = Math.floor(Date.now());
             let newDate = new Date();
-            let today = `${newDate.getFullYear()}-${(fixDate(newDate.getMonth()+1))}-${fixDate(newDate.getDate())}` 
+            let today = `${newDate.getFullYear()}-${(fixDate(newDate.getMonth() + 1))}-${fixDate(newDate.getDate())}`
             if (!value) {
                 return;
             }
@@ -40,7 +53,7 @@ var app = new Vue({
                 important: 1,
                 star: 'star_border',
                 birth: today,
-                deadline:'day'
+                deadline: 'day'
             });
             this.newTodo = "";
             setDataOn(this);
@@ -164,8 +177,12 @@ var app = new Vue({
         },
     },
     created() {
-        setTimeout(checkStatus, 2000);
-        this._data.today = `${nowDate.getFullYear()}-${(fixDate(nowDate.getMonth()+1))}-${fixDate(nowDate.getDate())}`;
+        if (isTest) {
+            this._data.todos = fakeTodos;
+        } else {
+            setTimeout(checkStatus, 2000);
+        }
+        this._data.today = `${nowDate.getFullYear()}-${(fixDate(nowDate.getMonth() + 1))}-${fixDate(nowDate.getDate())}`;
     },
 })
 
@@ -173,7 +190,7 @@ var app = new Vue({
 
 //firebase的
 
-function getData(datas) {
+function getData(datas, userName) {
     console.log(datas.todos);
     db.ref(`/todoList/${userName}`).on('value', function (snapshot) {
         if (snapshot) {
@@ -205,7 +222,7 @@ function checkStatus() { //確認登入狀況
         app._data.status = 'yes'
         console.log(app._data.status);
         userName = firebase.auth().currentUser.email.split('@')[0];
-        getData(app._data)
+        getData(app._data, userName)
     } else {
         app._data.todos = [];
         app._data.status = 'no'
@@ -215,10 +232,10 @@ function checkStatus() { //確認登入狀況
 }
 
 
-function fixDate(num){
-    if (num<10){
-        return '0'+num
-    } else{
+function fixDate(num) {
+    if (num < 10) {
+        return '0' + num
+    } else {
         return num
     }
 };
