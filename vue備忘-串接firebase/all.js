@@ -1,4 +1,4 @@
-let isTest = true;
+let isTest = false;
 let db = firebase.database();
 let dbTest = '';
 var provider = new firebase.auth.GoogleAuthProvider();
