@@ -239,3 +239,8 @@ function fixDate(num) {
         return num
     }
 };
+
+
+let qwe = ' 一二三四五';
+let r = qwe.indexOf('一二');
+console.log(r);

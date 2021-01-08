@@ -9,6 +9,18 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+        }
+        #app{
+            height: 100%;
+            background: rgb(199, 195, 195);
+        }
         .list-group-item {
             padding: 15px 0px;
             font-size: 18px
@@ -18,11 +30,13 @@
             background-color: rgb(238, 192, 133);
             color: black;
             font-weight: bold;
+            border:1px solid red
         }
 
         .star {
             color: red;
             cursor: pointer;
+
         }
 
         .status {
@@ -40,15 +54,22 @@
         .signBtn{
             font-weight: bold;
         }
+        .clickBtn{
+            color: white;
+        }
+        .clickBtn:hover{
+            color:yellow;
+
+        }
     </style>
 </head>
 
 <body>
     <div id="app" class="container-fluid px-0">
-        <div class="col d-flex align-items-center mb-3 px-0 py-3 bg-primary">
-            <button class="btn btn-light text-primary ml-3 signBtn" @click='signInGoogle'>Google登入</button>
-            <button class="btn btn-light text-primary ml-3 signBtn" @click='signOutGoogle'>退出帳號</button>
-            <!-- <span class="status" v-for="item in status">登入狀態 : {{item}} </span> -->
+        <div class="col d-flex align-items-center mb-3 px-0 py-3 bg-dark">
+            <button class="btn btn-primary ml-3 signBtn" @click='signInGoogle'>Google登入</button>
+            <button class="btn btn-primary ml-3 signBtn" @click='signOutGoogle'>退出帳號</button>
+            <!-- <span class="status" v-for="item in staprimary}} </span> -->
 
             <span class="status ml-3" v-if='status =="no" '>登入狀態 : 未登入</span>
             <span class="status ml-3" v-if='status =="yes" '>登入狀態 : 已登入</span>
@@ -59,26 +80,26 @@
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">待辦事項</span>
+                    <span class="input-group-text bg-primary text-light" id="basic-addon1">待辦事項</span>
                 </div>
                 <input type="text" class="form-control" placeholder="準備要做的任務" v-model="newTodo" @keyup.enter="addTodo">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" @click='addTodo'>新增</button>
                 </div>
             </div>
-            <div class="card text-center">
-                <div class="card-header">
+            <div class="card border-secondary">
+                <div class="card-header bg-secondary">
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a class="nav-link" href="#" :class="{'active' : visibility == 'all'}"
+                            <a class="nav-link clickBtn" href="#" :class="{'active' : visibility == 'all'}"
                                 @click='visibility="all"'>全部</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#" :class="{'active' : visibility == 'active'}"
+                            <a class="nav-link clickBtn" href="#" :class="{'active' : visibility == 'active'}"
                                 @click='visibility="active"'>進行中</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" :class="{'active' : visibility == 'completed'}"
+                            <a class="nav-link clickBtn" href="#" :class="{'active' : visibility == 'completed'}"
                                 @click='visibility="completed"'>已完成</a>
                         </li>
                     </ul>
@@ -129,14 +150,16 @@
                             @keyup.esc="cancelEdit()" @keyup.enter="doneEdit(item)">
                     </li>
                 </ul>
-                <div class="card-footer d-flex justify-content-between">
+                <div class="card-footer d-flex justify-content-between bg-secondary text-light">
                     <span>還有 {{countTodos}} 筆任務未完成</span>
-                    <a href="#" @click.prevent="removeCompleted">清除已完成任務</a>
-                    <a href="#" @click.prevent="removeAll">清除所有任務</a>
+                    <a class="clickBtn" href="#" @click.prevent="removeCompleted">清除已完成任務</a>
+                    <a class="clickBtn" href="#" @click.prevent="removeAll">清除所有任務</a>
                 </div>
             </div>
         </div>
+        <div class="footer">
 
+        </div>
     </div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
