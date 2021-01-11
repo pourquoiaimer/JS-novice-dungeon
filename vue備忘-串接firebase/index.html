@@ -15,14 +15,16 @@
         }
         body{
             height: 100%;
+            position: relative;
         }
         #app{
             min-height: 100%;
             background: rgb(199, 195, 195);
             padding-bottom: 50px;
+
         }
         .list-group-item {
-            padding: 15px 0px;
+            padding: 15px 0;
             font-size: 18px
         }
 
@@ -72,6 +74,23 @@
             font-size: 20px;
             padding: 10px;
         }
+        .date{
+            text-align: center;
+            width: 50px;
+            min-width: 50px;
+        }
+        #loadingBar{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(54, 54, 54, 0.6);
+            z-index: 99;
+            position: absolute;
+            top: 0;
+            display: none;
+        }
+        .show{
+            display: block !important; 
+        }
     </style>
 </head>
 
@@ -115,7 +134,7 @@
                     </ul>
                 </div>
                 <ul class="list-group list-group-flush text-left" id='items'>
-                    <li class="list-group-item item py-3 px-3" :class="{'active' : item.star == 'star'}"
+                    <li class="list-group-item item p-3" :class="{'active' : item.star == 'star'}"
                         v-for="(item,key) in filterTodos" :key='item.id' @dblclick="editTodo(item)"
                         v-if='item.star ==="star"'>
                         <div class="d-flex align-items-center" v-if="item.id !==cacheTodo.id">
@@ -127,7 +146,7 @@
                                     {{item.title}}
                                 </label>
                             </div>
-                            <div class="Date ml-auto">
+                            <div class="date ml-auto">
                                 {{item.birth}}
                             </div>
                             <button type="button" class="close ml-2" aria-label="Close" @click="removeTodo(item)">
@@ -137,7 +156,7 @@
                         <input type="text" class="form-control" v-if="item.id ===cacheTodo.id" v-model="cacheTitle"
                             @keyup.esc="cancelEdit()" @keyup.enter="doneEdit(item)">
                     </li>
-                    <li class="list-group-item item py-3 px-3" :class="{'active' : item.star == 'star'}"
+                    <li class="list-group-item item p-3" :class="{'active' : item.star == 'star'}"
                         v-for="(item,key) in filterTodos" :key='item.id' @dblclick="editTodo(item)"
                         v-if='item.star ==="star_border"'>
                         <div class="d-flex align-items-center" v-if="item.id !==cacheTodo.id">
@@ -149,10 +168,10 @@
                                     {{item.title}}
                                 </label>
                             </div>
-                            <div class="Date ml-auto">
+                            <div class="date ml-auto">
                                 {{item.birth}}
                             </div>
-                            <button type="button" class="close ml-3" aria-label="Close" @click="removeTodo(item)">
+                            <button type="button" class="close ml-2" aria-label="Close" @click="removeTodo(item)">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -170,7 +189,12 @@
         <div class="footer bg-dark text-white">
                 算是todolist的測試吧
         </div>
+
+
     </div>
+    <div id="loadingBar" class="">讀取中
+    </div>
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 

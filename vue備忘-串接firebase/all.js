@@ -1,9 +1,10 @@
 let isTest = false;
-let db = firebase.database();
+const db = firebase.database();
 let dbTest = '';
-var provider = new firebase.auth.GoogleAuthProvider();
+const provider = new firebase.auth.GoogleAuthProvider();
 let userName = '@@';
 let nowDate = new Date();
+const bar = document.querySelector('#loadingBar');
 let fakeTodos = [{
     num: 0,
     id: 0,
@@ -41,7 +42,7 @@ var app = new Vue({
             let value = this.newTodo.trim();
             let timesId = Math.floor(Date.now());
             let newDate = new Date();
-            let today = `${newDate.getFullYear()}-${(fixDate(newDate.getMonth() + 1))}-${fixDate(newDate.getDate())}`
+            let today = `${newDate.getFullYear()} ${(fixDate(newDate.getMonth() + 1))}-${fixDate(newDate.getDate())}`
             if (!value) {
                 return;
             }
@@ -218,17 +219,20 @@ function setDataOn(data) {
 }
 
 function checkStatus() { //確認登入狀況
+    loadingBarChange();
     if (firebase.auth().currentUser) {
         app._data.status = 'yes'
         console.log(app._data.status);
         userName = firebase.auth().currentUser.email.split('@')[0];
         getData(app._data, userName)
+        console.log('asdasd');
     } else {
         app._data.todos = [];
         app._data.status = 'no'
         console.log(app._data.status);
         userName = '@@';
     }
+    setTimeout(loadingBarChange,500)
 }
 
 
@@ -240,7 +244,6 @@ function fixDate(num) {
     }
 };
 
-
-let qwe = ' 一二三四五';
-let r = qwe.indexOf('一二');
-console.log(r);
+function loadingBarChange(){
+        bar.classList.toggle('show');
+}
