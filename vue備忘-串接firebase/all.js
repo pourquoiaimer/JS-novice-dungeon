@@ -4,7 +4,7 @@ let dbTest = '';
 const provider = new firebase.auth.GoogleAuthProvider();
 let userName = '@@';
 let nowDate = new Date();
-const bar = document.querySelector('#loadingBar');
+const bar = document.getElementById('loadingBar')
 let fakeTodos = [{
     num: 0,
     id: 0,
@@ -225,7 +225,6 @@ function checkStatus() { //確認登入狀況
         console.log(app._data.status);
         userName = firebase.auth().currentUser.email.split('@')[0];
         getData(app._data, userName)
-        console.log('asdasd');
     } else {
         app._data.todos = [];
         app._data.status = 'no'
