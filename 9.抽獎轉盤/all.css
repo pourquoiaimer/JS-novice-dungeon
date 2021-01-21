@@ -66,6 +66,26 @@ img {
   height: auto;
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.wrap {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .bg-cover {
   background-size: cover;
   background-position: center center;
@@ -80,20 +100,112 @@ html {
   background-color: #5858B9;
 }
 
-#test {
-  margin: 0 auto;
-  margin-top: 100px;
+#turntable {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 700px;
+  width: 94%;
 }
 
-#test svg {
-  -webkit-transform: rotate(30deg);
-          transform: rotate(30deg);
+.circleBorder {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background-color: #22299B;
+  border: 3px solid #1F1172;
+  position: relative;
+  z-index: 3;
 }
 
-g {
-  border: 3px solid purple;
+.circleBorder .giftName {
+  font: normal normal bold 32px/32px Roboto Condensed;
+}
+
+.circleBorder .giftIcon {
+  font-size: 65px;
+}
+
+.indicator {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  background-color: #1F1172;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.indicator .pointer {
+  position: absolute;
+  bottom: 0;
+  color: #b124db;
+  -webkit-transform-origin: 50% calc(50% + 40.36px);
+          transform-origin: 50% calc(50% + 40.36px);
+}
+
+.indicator .pressText {
+  font: normal normal bold 32px/38px Roboto Condensed;
+  color: #FF00BA;
+  z-index: 3;
+}
+
+.selectArea {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.selectArea #selectData {
+  width: 100%;
+}
+
+.congratulation {
+  position: absolute;
+  width: 100%;
+  height: 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  background: #343BAA 0% 0% no-repeat padding-box;
+}
+
+.congratulation .congratulation-l {
+  margin-left: 55.16px;
+  margin-right: 630px;
+  font: normal normal bold 72px/72px Roboto Condensed;
+}
+
+.congratulation .congratulation-r {
+  font: normal normal bold 32px/32px Roboto Condensed;
+}
+
+.congratulation .prizeName {
+  text-decoration: underline;
+  font: normal normal bold 72px/72px Roboto Condensed;
+  color: #FF00BA;
 }

@@ -39,7 +39,6 @@
         .star {
             color: red;
             cursor: pointer;
-
         }
 
         .status {
@@ -140,7 +139,7 @@
                         <div class="d-flex align-items-center" v-if="item.id !==cacheTodo.id">
                             <span class="material-icons pr-2 star" :class="{'active' : item.star == 'star'}"
                                 @click='changeStar(item)'>{{item.star}}</span>
-                            <div class="form-check">
+                            <div class="form-check px-3">
                                 <input type="checkbox" class="form-check-input" v-model="item.completed" :id="item.id">
                                 <label class="form-check-label" :for="item.id" :class="{'completed' :item.completed}">
                                     {{item.title}}

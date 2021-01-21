@@ -9,9 +9,20 @@
     }
 }
 
-// html {
-// background-color: black;
-// }
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .bg-cover {
     background-size: cover;
     background-position: center center;
@@ -21,19 +32,94 @@
     margin-right: 0;
     margin-left: 0;
 }
-html{
+
+html {
     background-color: #5858B9;
 }
-#test {
-    margin: 0 auto;
-    margin-top: 100px;
+
+#turntable {
     justify-content: center;
-    svg {
-        transform: rotate(30deg);
-    }
-    width: 700px;
+    width: 94%;
 }
 
-g {
-    border: 3px solid purple;
+.circleBorder {
+    margin: auto;
+    // margin-top: calc((100vh - 550px)/2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    background-color: #22299B;
+    border: 3px solid #1F1172;
+    position: relative;
+    z-index: 3;
+    .giftName {
+        font: normal normal bold 32px/32px Roboto Condensed;
+    }
+
+    .giftIcon {
+        font-size: 65px;
+    }
+}
+
+.indicator {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    background-color: #1F1172;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .pointer {
+        position: absolute;
+        bottom: 0;
+        color: rgb(177, 36, 219);
+        // transition: all 3s ease;
+        transform-origin: 50% calc(50% + 40.36px);
+    }
+
+    .pressText {
+        font: normal normal bold 32px/38px Roboto Condensed;
+        color: #FF00BA;
+        z-index: 3;
+    }
+}
+
+.selectArea {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    #selectData {
+        width: 100%;
+    }
+}
+
+.congratulation {
+    position: absolute;
+    width: 100%;
+    height:250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: #343BAA 0% 0% no-repeat padding-box;
+    .congratulation-l {
+        margin-left: 55.16px;
+        margin-right: 630px ;
+        font: normal normal bold 72px/72px Roboto Condensed;
+    }
+    .congratulation-r {
+        font: normal normal bold 32px/32px Roboto Condensed;
+    }
+
+    .prizeName {
+        text-decoration: underline;
+        font: normal normal bold 72px/72px Roboto Condensed;
+        color: #FF00BA;
+    }
 }
