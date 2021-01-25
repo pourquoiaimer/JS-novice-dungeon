@@ -81,7 +81,7 @@ h1 {
 }
 
 .container {
-  margin: calc(50vh - 260px) auto;
+  margin: calc(50% - 550px) auto;
   width: 350px;
   height: 550px;
   -webkit-box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
