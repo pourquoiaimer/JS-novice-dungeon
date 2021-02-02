@@ -77,7 +77,7 @@ function addNum(nowClick) { //輸入數字的事件，增加判斷最後符號�
 }
 
 function addPoint(nowClick) { //小數點計算
-    switch (true) { //主要市判斷在何時要增加小數點
+    switch (true) { //主要是判斷在何時要增加小數點
         case (data.enterNum !== '' && data.enterNum.indexOf('.') === -1):
             data.enterNum = data.enterNum + nowClick;
             break;
