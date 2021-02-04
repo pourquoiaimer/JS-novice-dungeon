@@ -130,7 +130,7 @@ function operatorClick(nowClick) { //點擊運算符
             data.enterNum = '';
             nowCount.textContent = data.enterNum;
             break;
-        case (['+', '-', 'x', '÷'].indexOf(data.passCountStr.substr(-1)) == -1 || data.enterNum !== 0): //如果前面一個是數字的話（正常情況）w
+        case (['+', '-', 'x', '÷'].indexOf(data.passCountStr.substr(-1)) == -1 || data.enterNum !== 0): //如果前面一個是數字的話（正常情況）
             data.nowAnswer = parseFloat(data.nowAnswer + data.passCountStr.substr(-1) + data.enterNum) || data.enterNum;
             data.nowAnswer = getAnswer(data.passCountStr.substr(-1));
             data.passCountStr = data.passCountStr + data.enterNum + nowClick;
