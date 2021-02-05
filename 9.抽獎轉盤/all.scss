@@ -55,6 +55,7 @@ html {
     border: 3px solid #1F1172;
     position: relative;
     z-index: 3;
+
     .giftName {
         font: normal normal bold 32px/32px Roboto Condensed;
     }
@@ -74,6 +75,7 @@ html {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+
     .pointer {
         position: absolute;
         bottom: 0;
@@ -102,24 +104,66 @@ html {
 .congratulation {
     position: absolute;
     width: 100%;
-    height:250px;
+    height: 250px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     color: white;
     background: #343BAA 0% 0% no-repeat padding-box;
+
     .congratulation-l {
-        margin-left: 55.16px;
-        margin-right: 630px ;
-        font: normal normal bold 72px/72px Roboto Condensed;
+        width: calc((100% - 550px)/2);
+        text-align: center;
+        // margin-left: 5%;
+        // margin-right: 55%;
+        font: normal normal bold 64px/64px Roboto Condensed;
     }
+
     .congratulation-r {
+        width: calc((100% - 550px)/2);
         font: normal normal bold 32px/32px Roboto Condensed;
+        text-align: center;
     }
 
     .prizeName {
         text-decoration: underline;
-        font: normal normal bold 72px/72px Roboto Condensed;
+        font: normal normal bold 68px/68px Roboto Condensed;
         color: #FF00BA;
+    }
+}
+.customize{
+    width: 700px;
+    height: auto;
+    background-color: #fff;
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
+    .customizeHeader{
+        height: 50px;
+        background-color: yellow;
+        border-bottom: 1px solid black;
+    }
+    .customizeArea{
+        height: 500px;
+    }
+    .customizeFooter{
+        // height: 50px;
+        background-color:yellow;
+        border-bottom: 1px solid black;
+        display: flex;
+        justify-content:flex-end;
+        padding: 10px 30px;
+        button{
+            font-size: 24px;
+            color: white;
+            // font-weight: bold;
+            width: 80px;
+            height: 40px;
+            margin-left: 20px;
+            background-color: #1F1172;
+        }
     }
 }

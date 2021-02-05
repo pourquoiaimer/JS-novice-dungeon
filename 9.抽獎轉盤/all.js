@@ -152,8 +152,9 @@ const data2018 = [
         icon: ""
     },
 ]  //作業要求的data2018
+const customize = []
 let data = data2017 //先暫定預設是這個
-
+let timeOutId ;
 const width = document.querySelector(`#turntable`).clientWidth;  //先將畫圖要用的寬度決定
 const height = width; //讓畫圖要用的高度等於寬度
 console.log(width, height);
@@ -166,10 +167,10 @@ const svg = d3 //在對應位置畫出轉盤的範圍，
     .append('g') //增加一個g標籤
     .attr('transform', `translate(${width / 2}, ${height / 2})`) //這邊是確定圓的位置
 
-const arc = d3 //抓出畫圓的範圍內框與外框(半徑)
-    .arc()
-    .innerRadius(0)
-    .outerRadius(width / 2)
+const arc = d3.arc().innerRadius(0).outerRadius(width / 2) //抓出畫圓的範圍內框與外框(半徑)
+
+
+
 
 function buildAll() { //建構整個圖案
     let pie = d3.pie().value(d => d.exist) //確認餅圖的資料範圍和切割的值，因為照預設每個區域圖像上都是平均的，所以用了一個屬性來當作被取的值
@@ -343,13 +344,15 @@ function spin() { //點擊press後觸發，先用變數算出本次得獎的獎�
     let nowDeg = (360 / data.length) * prizeNum + (360 / data.length) / 2; //確定要旋轉的角度
     $('.pointer').css({ "transform": `rotate(${nowDeg + 3600}deg)`, 'transition': 'all 5s ease' }) //這邊讓指針多旋轉10圈再轉到確定的角度，並加上旋轉時間和方式
     $('.indicator').off('click', spin)//讓press暫時不可按
-    setTimeout(function () { //讓指針轉完之後執行
+    timeOutId = setTimeout(function () { //讓指針轉完之後執行
         lotteryResult(prizeNum); //根據結果調整data值
         $('.pointer').css({ "transform": `rotate(${nowDeg}deg)`, 'transition': 'all 0s' })  //通過這個動作讓角度值不致於太大
         $('.prizeName').text(prizeName); //改變慶祝文字中的獎品名稱
         $('.congratulation').toggle(); //讓慶祝文字顯示
         $('.indicator').on('click', spin)//讓press變回可按
     }, 5000)
+    console.log(timeOutId);
+
 }
 
 function getPrize() { //通過這個函數隨機選出獎品，並回傳是data中的第幾個
@@ -364,6 +367,11 @@ function getPrize() { //通過這個函數隨機選出獎品，並回傳是data�
 }
 
 function changeData() {  //用來切換data
+    if ($('#selectData').val() == 'customize'){
+        console.log('a');
+        $('.customize').toggle();
+        return
+    }
     let chooseData = eval($('#selectData').val()) //取出要用的data
     data = chooseData; //改變data
     svg //清除所有path
@@ -373,7 +381,9 @@ function changeData() {  //用來切換data
         .selectAll('text')
         .remove()
     $('.pointer').css({ "transform": `rotate(0)`, 'transition': 'all 0s' }) ///讓指針先歸零
+    clearTimeout(timeOutId)
     buildAll() //重新依照修改過得資料繪圖
+    $('.indicator').off().on('click', spin) //綁定press的點擊事件
 }
 
 (function () { //直接執行的匿名函數
@@ -381,6 +391,7 @@ function changeData() {  //用來切換data
     $('.indicator').on('click', spin) //綁定press的點擊事件
     $('#selectData').on('change', changeData) //綁定改變資料的事件
     $('.congratulation').toggle(); //先讓慶祝文字隱藏
+    // $('.customize').toggle();
 })()
 
 

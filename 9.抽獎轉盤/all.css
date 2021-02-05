@@ -184,9 +184,9 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -195,17 +195,67 @@ html {
 }
 
 .congratulation .congratulation-l {
-  margin-left: 55.16px;
-  margin-right: 630px;
-  font: normal normal bold 72px/72px Roboto Condensed;
+  width: calc((100% - 550px)/2);
+  text-align: center;
+  font: normal normal bold 64px/64px Roboto Condensed;
 }
 
 .congratulation .congratulation-r {
+  width: calc((100% - 550px)/2);
   font: normal normal bold 32px/32px Roboto Condensed;
+  text-align: center;
 }
 
 .congratulation .prizeName {
   text-decoration: underline;
-  font: normal normal bold 72px/72px Roboto Condensed;
+  font: normal normal bold 68px/68px Roboto Condensed;
   color: #FF00BA;
+}
+
+.customize {
+  width: 700px;
+  height: auto;
+  background-color: #fff;
+  position: absolute;
+  z-index: 99;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.customize .customizeHeader {
+  height: 50px;
+  background-color: yellow;
+  border-bottom: 1px solid black;
+}
+
+.customize .customizeArea {
+  height: 500px;
+}
+
+.customize .customizeFooter {
+  background-color: yellow;
+  border-bottom: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 10px 30px;
+}
+
+.customize .customizeFooter button {
+  font-size: 24px;
+  color: white;
+  width: 80px;
+  height: 40px;
+  margin-left: 20px;
+  background-color: #1F1172;
 }
