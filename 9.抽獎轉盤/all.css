@@ -235,13 +235,9 @@ html {
   border-bottom: 1px solid black;
 }
 
-.customize .customizeArea {
-  height: 500px;
-}
-
 .customize .customizeFooter {
   background-color: yellow;
-  border-bottom: 1px solid black;
+  border-top: 1px solid black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -252,10 +248,28 @@ html {
 }
 
 .customize .customizeFooter button {
+  cursor: pointer;
   font-size: 24px;
-  color: white;
   width: 80px;
   height: 40px;
   margin-left: 20px;
+  background-color: #df84df;
+  color: black;
+}
+
+.customize .customizeFooter button:hover {
+  color: white;
   background-color: #1F1172;
+}
+
+.customizeArea {
+  height: 500px;
+  border-collapse: collapse;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50px 1fr 1fr;
+      grid-template-columns: 50px 1fr 1fr;
+  -ms-grid-rows: 30px auto;
+      grid-template-rows: 30px auto;
+  text-align: center;
 }

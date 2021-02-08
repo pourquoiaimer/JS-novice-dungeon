@@ -154,7 +154,7 @@ const data2018 = [
 ]  //作業要求的data2018
 const customize = []
 let data = data2017 //先暫定預設是這個
-let timeOutId ;
+let timeOutId;
 const width = document.querySelector(`#turntable`).clientWidth;  //先將畫圖要用的寬度決定
 const height = width; //讓畫圖要用的高度等於寬度
 console.log(width, height);
@@ -342,7 +342,7 @@ function spin() { //點擊press後觸發，先用變數算出本次得獎的獎�
     let prizeNum = getPrize() //透過函數隨機取得本次選到的值(data中的索引值)
     let prizeName = data[prizeNum].kind; //抓出獎品名稱
     let nowDeg = (360 / data.length) * prizeNum + (360 / data.length) / 2; //確定要旋轉的角度
-    $('.pointer').css({ "transform": `rotate(${nowDeg + 3600}deg)`, 'transition': 'all 5s ease' }) //這邊讓指針多旋轉10圈再轉到確定的角度，並加上旋轉時間和方式
+    $('.pointer').css({ "transform": `rotate(${nowDeg + 3600}deg)`, 'transition': 'all 3s ease' }) //這邊讓指針多旋轉10圈再轉到確定的角度，並加上旋轉時間和方式
     $('.indicator').off('click', spin)//讓press暫時不可按
     timeOutId = setTimeout(function () { //讓指針轉完之後執行
         lotteryResult(prizeNum); //根據結果調整data值
@@ -350,7 +350,7 @@ function spin() { //點擊press後觸發，先用變數算出本次得獎的獎�
         $('.prizeName').text(prizeName); //改變慶祝文字中的獎品名稱
         $('.congratulation').toggle(); //讓慶祝文字顯示
         $('.indicator').on('click', spin)//讓press變回可按
-    }, 5000)
+    }, 3200)
     console.log(timeOutId);
 
 }
@@ -367,7 +367,7 @@ function getPrize() { //通過這個函數隨機選出獎品，並回傳是data�
 }
 
 function changeData() {  //用來切換data
-    if ($('#selectData').val() == 'customize'){
+    if ($('#selectData').val() == 'customize') {
         console.log('a');
         $('.customize').toggle();
         return
@@ -391,7 +391,6 @@ function changeData() {  //用來切換data
     $('.indicator').on('click', spin) //綁定press的點擊事件
     $('#selectData').on('change', changeData) //綁定改變資料的事件
     $('.congratulation').toggle(); //先讓慶祝文字隱藏
-    // $('.customize').toggle();
 })()
 
 

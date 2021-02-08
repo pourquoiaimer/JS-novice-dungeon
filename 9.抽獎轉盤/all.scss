@@ -44,7 +44,6 @@ html {
 
 .circleBorder {
     margin: auto;
-    // margin-top: calc((100vh - 550px)/2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,7 +79,6 @@ html {
         position: absolute;
         bottom: 0;
         color: rgb(177, 36, 219);
-        // transition: all 3s ease;
         transform-origin: 50% calc(50% + 40.36px);
     }
 
@@ -114,8 +112,6 @@ html {
     .congratulation-l {
         width: calc((100% - 550px)/2);
         text-align: center;
-        // margin-left: 5%;
-        // margin-right: 55%;
         font: normal normal bold 64px/64px Roboto Condensed;
     }
 
@@ -131,7 +127,8 @@ html {
         color: #FF00BA;
     }
 }
-.customize{
+
+.customize {
     width: 700px;
     height: auto;
     background-color: #fff;
@@ -141,29 +138,43 @@ html {
     flex-direction: column;
     border-radius: 20px;
     overflow: hidden;
-    .customizeHeader{
+
+    .customizeHeader {
         height: 50px;
         background-color: yellow;
         border-bottom: 1px solid black;
     }
-    .customizeArea{
-        height: 500px;
-    }
-    .customizeFooter{
-        // height: 50px;
-        background-color:yellow;
-        border-bottom: 1px solid black;
+
+    .customizeFooter {
+        background-color: yellow;
+        border-top: 1px solid black;
         display: flex;
-        justify-content:flex-end;
+        justify-content: flex-end;
         padding: 10px 30px;
-        button{
+
+        button {
+            &:hover {
+                color: white;
+                background-color: #1F1172;
+            }
+
+            cursor: pointer;
             font-size: 24px;
-            color: white;
-            // font-weight: bold;
             width: 80px;
             height: 40px;
             margin-left: 20px;
-            background-color: #1F1172;
+            background-color: rgb(223, 132, 223);
+            color: black;
         }
     }
+}
+
+.customizeArea {
+    height: 500px;
+    border-collapse: collapse;
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr;
+    grid-template-rows: 30px auto;
+    text-align: center;
+
 }

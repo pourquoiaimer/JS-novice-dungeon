@@ -39,7 +39,7 @@ const container = document.querySelector('.container'); //指向位置
 
 function getDate(dataTimeZone) { //取時間，再把時間轉成我們要的格式
     options.timeZone = dataTimeZone;
-    let date = new Date()timezone('en-us', options)
+    let date = new Date().toLocaleString('en-us', options)
     return date
 }
 
@@ -48,7 +48,7 @@ function test() { //基本上就是從取好的時間裡把需要的部份取出
     timeData.forEach((data) => {
         let nowDate = getDate(data.timeZone);
         let nowTime = nowDate.substr(-5);
-        let nowDay = nowDate.substr(4, 2)+" "+nowDate.substr(0, 3)+". "+nowDate.substr(8, 4);
+        let nowDay = nowDate.substr(4, 2) + " " + nowDate.substr(0, 3) + ". " + nowDate.substr(8, 4);
         str += `<div class="time-zone ${data.bgc}">
         <div class="nameDay">
             <span class="city">${data.city}</span>
@@ -59,7 +59,7 @@ function test() { //基本上就是從取好的時間裡把需要的部份取出
         </div>
     </div>`;
     });
-    container.innerHTML=`<div class="h1">WORLD CLOCK</div>${str}`;
+    container.innerHTML = `<div class="h1">WORLD CLOCK</div>${str}`;
 }
-setInterval(test,10000);
+setInterval(test, 10000);
 test();
