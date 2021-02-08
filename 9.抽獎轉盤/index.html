@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>抽獎轉盤</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.14.0/sweetalert2.css"
+        integrity="sha512-tAB44Mx++ci+FGvwu3N7f1RSXeN2s+M+pbJHHbYOmkla05H3zV0Y/LFVtwFAPU92HQcLj6SRHS925pcBBxJ4XQ=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="./all.css">
 </head>
 
@@ -38,22 +41,27 @@
                 <option value="data2018">2018版</option>
                 <option value="customize">Customize</option>
             </select>
+            <button class="result">看目前結果</button>
         </div>
         <div class="customize">
             <div class="customizeHeader">
-
             </div>
 
             <div class="customizeArea">
-                
-                <!-- <div class="customizeAreaHeader">
-                    <div>序號</div>
-                    <div class="kind">名稱/類別</div>
-                    <div class="quantity">數量</div>
-                </div> -->
+                <div class="areaHeader">
+                    <p></p>
+                    <p>名稱/類別</p>
+                    <p>數量</p>
+                </div>
+                <div class="customizeItem">
+                    <button class="cancelItem">刪除</button>
+                    <input type="text" class="kind">
+                    <input type="number" class="quantity">
+                </div>
 
             </div>
             <div class="customizeFooter">
+                <button class="customizeAdd">新增項目</button>
                 <button class="customizeSure">確定</button>
                 <button class="customizeCancel">取消</button>
             </div>
@@ -67,6 +75,7 @@
 
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="./all.js"></script>
 </body>

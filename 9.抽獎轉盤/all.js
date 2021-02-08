@@ -12,7 +12,7 @@ const data2017 = [
         icon: "stars"
     },
     {
-        kind: 'child',
+        kind: 'Child',
         exist: 1,
         quantity: 4,
         icon: "child_care"
@@ -152,8 +152,12 @@ const data2018 = [
         icon: ""
     },
 ]  //作業要求的data2018
-const customize = []
-let data = data2017 //先暫定預設是這個
+let customize = [
+    {
+    }
+];
+let result = []
+let data = data2017 //預設是這個
 let timeOutId;
 const width = document.querySelector(`#turntable`).clientWidth;  //先將畫圖要用的寬度決定
 const height = width; //讓畫圖要用的高度等於寬度
@@ -338,6 +342,8 @@ function lotteryResult(awards) { //根據隨機的結果來改變data
 
 function spin() { //點擊press後觸發，先用變數算出本次得獎的獎品，然後讓指針轉圈，轉完後畫面上呈現得獎結果，並用lotteryResult函數在data中減去相應的值 
     $('.congratulation').hide()  //讓慶祝文字隱藏
+    $('.result').hide() //隱藏看結果按鈕
+    $('#selectData').hide()//隱藏選擇不同data按鈕
     update() //按照上一輪的結果更新圖案
     let prizeNum = getPrize() //透過函數隨機取得本次選到的值(data中的索引值)
     let prizeName = data[prizeNum].kind; //抓出獎品名稱
@@ -350,6 +356,12 @@ function spin() { //點擊press後觸發，先用變數算出本次得獎的獎�
         $('.prizeName').text(prizeName); //改變慶祝文字中的獎品名稱
         $('.congratulation').toggle(); //讓慶祝文字顯示
         $('.indicator').on('click', spin)//讓press變回可按
+        $('#selectData').show()
+        $('.result').show()
+        result.push(prizeName)
+        if (data == []) {
+            alert('抽完囉')
+        }
     }, 3200)
     console.log(timeOutId);
 
@@ -367,10 +379,13 @@ function getPrize() { //通過這個函數隨機選出獎品，並回傳是data�
 }
 
 function changeData() {  //用來切換data
+    $('.congratulation').hide(); //先讓慶祝文字隱藏
     if ($('#selectData').val() == 'customize') {
         console.log('a');
-        $('.customize').toggle();
+        $('.customize').show();
         return
+    } else {
+        $('.customize').hide();
     }
     let chooseData = eval($('#selectData').val()) //取出要用的data
     data = chooseData; //改變data
@@ -384,13 +399,100 @@ function changeData() {  //用來切換data
     clearTimeout(timeOutId)
     buildAll() //重新依照修改過得資料繪圖
     $('.indicator').off().on('click', spin) //綁定press的點擊事件
+    result = []
+}
+
+function customizeBuild() {
+    let kinds = [];
+    let quantitys = [];
+    let check = true
+    $('.kind').each(function () {
+        if ($(this).val() == "") {
+            alert('有名稱/類別未填')
+            $(this).addClass('wrong')
+            check = false
+            return
+        } else {
+            $(this).removeClass('wrong')
+            kinds.push($(this).val())
+        }
+    })
+    $('.quantity').each(function () {
+        if ($(this).val() == "" || $(this).val() <= 0) {
+            alert('有數量未填寫或填寫錯誤')
+            $(this).addClass('wrong')
+            check = false
+            return
+        } else {
+            $(this).removeClass('wrong')
+            quantitys.push($(this).val())
+        }
+    })
+    if (check == false) { return }
+    let len = kinds.length;
+    customize = []
+    for (let i = 0; i < len; i++) {
+        let item = { 'kind': kinds[i], 'exist': 1, 'quantity': quantitys[i], 'icon': "" }
+        customize.push(item)
+    }
+    console.log(customize);
+    $('.customize').hide();
+    data = customize; //改變data
+    svg //清除所有path
+        .selectAll('path')
+        .remove()
+    svg //清除所有text
+        .selectAll('text')
+        .remove()
+    $('.pointer').css({ "transform": `rotate(0)`, 'transition': 'all 0s' }) ///讓指針先歸零
+    clearTimeout(timeOutId)
+    buildAll() //重新依照修改過得資料繪圖
+    $('.indicator').off().on('click', spin) //綁定press的點擊事件
+}
+
+function customizeAdd() {
+    let str = `<div class="customizeItem">
+                    <button class="cancelItem">刪除</button>
+                    <input type="text" class="kind">
+                    <input type="number" class="quantity">
+                </div>`
+    $(str).appendTo($('.customizeArea'))
+    $('.cancelItem').on('click', cancelItem)
+}
+
+function cancelItem() {
+    this.parentNode.remove()
+}
+
+function showresult() {
+    let len = result.length
+    let str = '';
+    if (result == 0) {
+        str = '目前還沒有抽出任何獎品'
+    } else {
+        for (let i = 0; i < len; i++) {
+            str += `第 ${i+1} 位抽中的是：${result[i]}<br>`
+        }
+    }
+    console.log(str);
+    Swal.fire({
+        title:'目前的抽獎結果是...',
+        html:str,
+        heightAuto: false,
+    })
 }
 
 (function () { //直接執行的匿名函數
     buildAll() //畫面構造
     $('.indicator').on('click', spin) //綁定press的點擊事件
     $('#selectData').on('change', changeData) //綁定改變資料的事件
-    $('.congratulation').toggle(); //先讓慶祝文字隱藏
+    $('.congratulation').hide(); //先讓慶祝文字隱藏
+    $('.customize').hide(); //先讓自訂欄位隱藏
+    $('.customizeAdd').on('click', customizeAdd)
+    $('.cancelItem').on('click', cancelItem)
+    $('.customizeSure').on('click', customizeBuild)
+    $('.result').on('click', showresult)
+
 })()
 
 
