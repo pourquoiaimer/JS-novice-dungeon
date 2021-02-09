@@ -50,7 +50,7 @@ let user2 = {
     gotCode: '',
 }
 
-let allScore = {}
+let allScore = [] //用來抓對戰紀錄
 
 function getScore() {
     allScore = JSON.parse(localStorage.getItem('score'))
@@ -61,7 +61,6 @@ function getScore() {
     localStorage.setItem('score', JSON.stringify(allScore))
     $('.SpongeBobScore').text(allScore[0])
     $('.PtrickStarScore').text(allScore[1])
-    console.log(allScore);
     // localStorage.setItem('move', JSON.stringify(moveData));
 }
 
@@ -92,7 +91,7 @@ function jugement() {
 function overRound() { //在jugement之後，切換到下個回合
     if (jugement()) {
         alert(`${nowUser.name}贏了！！！！！`)
-        let i = ((nowUser.name == 'SpongeBob') ? 0 : 1 )
+        let i = ((nowUser.name == 'SpongeBob') ? 0 : 1)
         console.log(i);
         allScore[i] += 1
         localStorage.setItem('score', JSON.stringify(allScore));
@@ -101,6 +100,8 @@ function overRound() { //在jugement之後，切換到下個回合
         let round = 1;
         nowUser = ((round % 2 == 1) ? user1 : user2);
         getScore()
+        $(`.${user1.name}`).addClass('nowUser')
+        $(`.${user2.name}`).removeClass('nowUser')
         $('.grid-item').data('occupied', 'false');
         $('.grid-item').removeClass('bgc-pai');
         $('.grid-item').removeClass('bgc-hei');
@@ -109,15 +110,19 @@ function overRound() { //在jugement之後，切換到下個回合
             alert(`平局！重新再來～`)
             user1.gotCode = '';
             user2.gotCode = '';
-            let round = 1;
+            round = 1;
             nowUser = ((round % 2 == 1) ? user1 : user2);
+            $(`.${user1.name}`).addClass('nowUser')
+            $(`.${user2.name}`).removeClass('nowUser')
             $('.grid-item').data('occupied', 'false');
             $('.grid-item').removeClass('bgc-pai');
             $('.grid-item').removeClass('bgc-hei');
         } else {
             console.log(nowUser.name);
-            round = round + 1;
+            round += 1;
             nowUser = ((round % 2 == 1) ? user1 : user2);
+            $(`.${user1.name}`).toggleClass('nowUser')
+            $(`.${user2.name}`).toggleClass('nowUser')
         }
     }
 }
@@ -147,4 +152,9 @@ function countGrid() {
     return grid
 }
 
-getScore()
+function init() {
+    $(`.${user1.name}`).addClass('nowUser')
+    getScore()
+}
+
+init()
