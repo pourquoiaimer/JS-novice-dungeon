@@ -66,16 +66,32 @@ img {
   height: auto;
 }
 
-html {
+html,
+body {
+  width: 100%;
   background-color: black;
 }
 
+.wrap {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
 .wrap h1 {
-  font-size: 60px;
+  width: 100%;
+  font-size: 50px;
   color: red;
   text-align: center;
-  margin: 50px 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
   line-height: 1.2;
+}
+
+@media (max-width: 767px) {
+  .wrap h1 {
+    font-size: 30px;
+  }
 }
 
 .grid-container {
@@ -83,14 +99,12 @@ html {
   padding: 10px;
   display: -ms-grid;
   display: grid;
-  width: 60vh;
-  height: 60vh;
-  min-height: 300px;
-  min-width: 300px;
-  -ms-grid-rows: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  width: 55vh;
+  height: 55vh;
+  -ms-grid-rows: (1fr)[3];
+      grid-template-rows: repeat(3, 1fr);
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
 }
 
 .grid-item {
@@ -123,4 +137,58 @@ html {
 
 .b {
   border-bottom: none;
+}
+
+.PtrickStar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 15%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.PtrickStar span {
+  margin: 10px 0;
+  color: red;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.SpongeBob {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 15%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.SpongeBob span {
+  margin: 10px 0;
+  color: red;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.nowUser {
+  border: 6px solid gold;
 }

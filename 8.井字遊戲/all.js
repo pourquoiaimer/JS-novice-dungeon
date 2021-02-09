@@ -39,18 +39,32 @@ const winCode = {
 }
 
 let user1 = {
-    name: '海綿寶寶', //用name來做localstorage的資料判定，存name和對應的成績
+    name: 'SpongeBob', //用name來做localstorage的資料判定，存name和對應的成績
     pic: 'bgc-hei', //這個是選擇要使用的圖形的，先有預設比如user1就是圈然後user2就是叉
     gotCode: '',
-    win: 0
 }
 
 let user2 = {
-    name: '派大星', //用name來做localstorage的資料判定，存name和對應的成績
+    name: 'PtrickStar', //用name來做localstorage的資料判定，存name和對應的成績
     pic: 'bgc-pai', //這個是選擇要使用的圖形的，先有預設比如user1就是圈然後user2就是叉
     gotCode: '',
-    win: 0
 }
+
+let allScore = {}
+
+function getScore() {
+    allScore = JSON.parse(localStorage.getItem('score'))
+    if (allScore == null || allScore == '') {
+        allScore = [0, 0]
+        console.log('還沒有成績');
+    }
+    localStorage.setItem('score', JSON.stringify(allScore))
+    $('.SpongeBobScore').text(allScore[0])
+    $('.PtrickStarScore').text(allScore[1])
+    console.log(allScore);
+    // localStorage.setItem('move', JSON.stringify(moveData));
+}
+
 
 let round = 1;
 let nowUser = ((round % 2 == 1) ? user1 : user2);
@@ -78,13 +92,15 @@ function jugement() {
 function overRound() { //在jugement之後，切換到下個回合
     if (jugement()) {
         alert(`${nowUser.name}贏了！！！！！`)
-        nowUser.win += 1;
-        eval(`score.${nowUser.name}=${nowUser.win}`);
-        localStorage.setItem('score', JSON.stringify(score));
+        let i = ((nowUser.name == 'SpongeBob') ? 0 : 1 )
+        console.log(i);
+        allScore[i] += 1
+        localStorage.setItem('score', JSON.stringify(allScore));
         user1.gotCode = '';
         user2.gotCode = '';
         let round = 1;
         nowUser = ((round % 2 == 1) ? user1 : user2);
+        getScore()
         $('.grid-item').data('occupied', 'false');
         $('.grid-item').removeClass('bgc-pai');
         $('.grid-item').removeClass('bgc-hei');
@@ -99,7 +115,7 @@ function overRound() { //在jugement之後，切換到下個回合
             $('.grid-item').removeClass('bgc-pai');
             $('.grid-item').removeClass('bgc-hei');
         } else {
-            console.log(nowUser);
+            console.log(nowUser.name);
             round = round + 1;
             nowUser = ((round % 2 == 1) ? user1 : user2);
         }
@@ -114,10 +130,8 @@ $('.grid-item').on('click', function () {
     } else {
         $(this).data('occupied', 'true');
         $(this).addClass(nowUser.pic);
-        console.log("上圖");
         let str = $(this).data('name');
         nowUser.gotCode = nowUser.gotCode + str;
-        console.log(nowUser.gotCode);
         // setTimeout(overRound, 100);
         overRound();
     }
@@ -130,6 +144,7 @@ function countGrid() {
             grid -= 1
         }
     });
-    console.log(grid);
     return grid
 }
+
+getScore()

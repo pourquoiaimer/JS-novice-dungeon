@@ -9,17 +9,29 @@
     }
 }
 
-html {
+html,
+body {
+    width: 100%;
     background-color: black;
 }
 
 .wrap {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
     h1 {
-        font-size: 60px;
-        color: red; 
+        width: 100%;
+        font-size: 50px;
+        color: red;
         text-align: center;
-        margin: 50px 0;
+        margin-top: 10px;
+        margin-bottom: 20px;
         line-height: 1.2;
+
+        @media (max-width: 767px) {
+            font-size: 30px;
+        }
     }
 }
 
@@ -27,12 +39,14 @@ html {
     margin: 0 auto;
     padding: 10px;
     display: grid;
-    width: 60vh;
-    height: 60vh;
-    min-height: 300px;
-    min-width: 300px;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
+    width: 55vh;
+    height: 55vh;
+    // min-width: 200px;
+    // min-height: 200px;
+    // grid-template-rows: repeat(3, 80px);;
+    // grid-template-columns: repeat(3, 80px);;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .grid-item {
@@ -69,4 +83,44 @@ html {
 
 .b {
     border-bottom: none;
+}
+
+.PtrickStar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+        margin: 10px 0;
+        color: red;
+        font-size: 30px;
+        font-weight: bold;
+    }
+}
+
+.SpongeBob {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 15%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+        margin: 10px 0;
+        color: red;
+        font-size: 30px;
+        font-weight: bold;
+    }
+}
+
+.nowUser {
+    border: 6px solid gold;
 }

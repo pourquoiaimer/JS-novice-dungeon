@@ -37,7 +37,6 @@ $(document).ready(function () {
 
 function init() {
     innerCounty();
-    // innerAreaData(data[0].County);
     getTime();
     setInterval(function () {
         alert('我要重新抓一下資料喔');
