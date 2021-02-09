@@ -1,6 +1,6 @@
 const startPage = '<div class="startPage"><div class="title"><div class="title-num">60</div><div class="title-text"><p>SECONDS</p><span>+−×÷</span><p>CHALLENGE</p></div></div><button class="startBtn">START!</button><p class="info">try to answer more as you can</p></div>';
 
-const gamePage = '<div class="gamePage"><div class="score-time"><div class="scoreArea"><div class="score-title">60 SECONDS CHALLENGE</div><div class="score-count"><span class="text">SCORE</span><span class="score">0</span></div></div><div class="time">00 : 60</div></div><div class="gameArea"><div class="question"><span class="num1">1</span><span class="operator operatorRandom">+</span><span class="num2">1</span><span class="operator">=</span></div><div><input type="text" class="answer"></div></div>';
+const gamePage = '<div class="gamePage"><div class="score-time"><div class="scoreArea"><div class="score-title">60 SECONDS CHALLENGE</div><div class="score-count"><span class="text">SCORE</span><span class="score">0</span></div></div><div class="time">00 : 60</div></div><div class="gameArea"><div class="question"><span class="num1">1</span><span class="operator operatorRandom">+</span><span class="num2">1</span><span class="operator">=</span></div><div><input type="number" class="answer"></div></div>';
 
 {/* <p>press enter to answer</p> */}
 
