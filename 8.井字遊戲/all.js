@@ -4,6 +4,7 @@
 // bl  bm  br
 
 
+
 const winCode = { //條列所有判定勝利所需的元素
     count3: ['t', 'c', 'b', 'l', 'm', 'r'], //用來判定是否橫直連線的元素 
     allGet1: ['tl', 'cm', 'br'], //斜線的勝利條件
@@ -24,120 +25,102 @@ let user2 = {
 
 let allScore = [] //用來抓對戰紀錄
 
-function getScore() {
+function getScore() { //從localstorage取得之前的成績
     allScore = JSON.parse(localStorage.getItem('score'))
-    if (allScore == null || allScore == '') {
+    if (allScore == null || allScore == '') { //若原本無成績則預存入[0,0]
         allScore = [0, 0]
-        console.log('還沒有成績');
     }
     localStorage.setItem('score', JSON.stringify(allScore))
-    $('.user1Score').text(allScore[0])
-    $('.user2Score').text(allScore[1])
-    // localStorage.setItem('move', JSON.stringify(moveData));
+    $('.user1Score').text(allScore[0]) //將成績寫入畫面
+    $('.user2Score').text(allScore[1]) //將成績寫入畫面
 }
 
+let round = 1; //設置回合
+let nowUser = ((round % 2 == 1) ? user1 : user2); //通過回合用餘數判定現在換誰
 
-let round = 1;
-let nowUser = ((round % 2 == 1) ? user1 : user2);
-let score = JSON.parse(localStorage.getItem('score')) || {};
-
-
-
-function jugement() {
-    let count3 = winCode.count3.some(function (code) {
+function jugement() { //判斷輸贏的函式
+    let count3 = winCode.count3.some(function (code) { //如果目前有一方獲得的格子代碼中有三個重複則判定為已完成直或橫連線
         return (nowUser.gotCode.split(code)).length === 4
     });
-    let allGet1 = winCode.allGet1.every(function (code) {
+    let allGet1 = winCode.allGet1.every(function (code) { //如果符合斜線的條件1
         return (nowUser.gotCode.split(code)).length === 2
     });
-    let allGet2 = winCode.allGet2.every(function (code) {
+    let allGet2 = winCode.allGet2.every(function (code) { //如果符合斜線的條件2
         return (nowUser.gotCode.split(code)).length === 2
     });
-    if (count3 == true || allGet1 == true || allGet2 == true) {
+    if (count3 == true || allGet1 == true || allGet2 == true) { //如果其中有任何一個是true則為勝利
         return true
     } else {
         return false
     }
 }
 
-function overRound() { //在jugement之後，切換到下個回合
-    if (jugement()) {
-        let bgc = ((nowUser.name == 'user1') ? 'bgc-hei' : 'bgc-pai')
-        $('.result').text('WINNER!')
-        $('.endPage').addClass(bgc)
-        let i = ((nowUser.name == 'user1') ? 0 : 1)
-        console.log(i);
-        allScore[i] += 1
-        localStorage.setItem('score', JSON.stringify(allScore));
-        getScore()
-        restart()
-    } else {
-        if (countGrid() == 0) { //當格子沒了又沒分出勝負時，進行平手判定
-            $('.result').text('@DRAW@')
-            $('.endPage').addClass('bgc-draw')
-            restart()
-        } else {
-            console.log(nowUser.name);
-            round += 1;
-            nowUser = ((round % 2 == 1) ? user1 : user2);
-            $(`.${user1.name}`).toggleClass('nowUser')
-            $(`.${user2.name}`).toggleClass('nowUser')
+function overRound() { //在jugement之後，根據結果執行相應行為
+    if (jugement()) { //如果是回傳的是true，代表已分出勝負，並根據nowUser知道現在勝利的是誰
+        let bgc = ((nowUser.name == 'user1') ? 'bgc-hei' : 'bgc-pai') //根據勝利者準備後面結算畫面要顯示的圖片
+        $('.result').text('WINNER!') //改變結算畫面的文字
+        $('.endPage').addClass(bgc) //顯示勝利者圖片
+        let i = ((nowUser.name == 'user1') ? 0 : 1) //確認贏家
+        allScore[i] += 1 //讓贏家的成績加1
+        localStorage.setItem('score', JSON.stringify(allScore)); //將成績存入localStorage
+        getScore() //重新抓一次成績
+        restart() //準備重開
+    } else { //如果沒有分出勝負時
+        if (round == 9) { //第9回合選完，表示已補完所有格子
+            $('.result').text('@DRAW@') //在結算畫面填入平手文字
+            $('.endPage').addClass('bgc-draw')  //在結算畫面填入平手圖案
+            restart() //準備重開
+        } else { //如果勝負未定且還未佔完格子
+            round += 1; //回合數加1
+            nowUser = ((round % 2 == 1) ? user1 : user2); //根據回合數切換使用者
+            $(`.${user1.name}`).toggleClass('nowUser') //切換使用者圖案邊框顯示
+            $(`.${user2.name}`).toggleClass('nowUser') //切換使用者圖案邊框顯示
         }
     }
 }
 
-
+//註冊點擊格子的行為
 $('.grid-item').on('click', function () {
-    if ($(this).data('occupied') == "true") {
+    if ($(this).data('occupied') == "true") { //如果這一格已經有人佔，則沒有反應
         console.log("有人佔囉");
         return
-    } else {
-        $(this).data('occupied', 'true');
-        $(this).addClass(nowUser.pic);
+    } else { //如果這格還沒有人佔
+        $(this).data('occupied', 'true'); //切換佔領狀態
+        $(this).addClass(nowUser.pic); //將這格顯示為占領者圖片
         let str = $(this).data('name');
-        nowUser.gotCode = nowUser.gotCode + str;
-        overRound();
+        nowUser.gotCode = nowUser.gotCode + str; //將佔領格子的代碼寫進占領者的資料中
+        overRound(); //進行勝負判定或回合切換
     }
 });
 
-function countGrid() {
-    let grid = 9;
-    $('.grid-item').each(function (i, n) {
-        if ($(n).data('occupied') == 'true') {
-            grid -= 1
-        }
-    });
-    return grid
-}
-
-function restart() {
-    $('.endPage').show()
-    $('.grid-container').hide()
-    user1.gotCode = '';
-    user2.gotCode = '';
-    round = 1;
-    nowUser = ((round % 2 == 1) ? user1 : user2);
-    $(`.${user1.name}`).addClass('nowUser')
+function restart() { //準備重開新局
+    $('.endPage').show() //顯示結算畫面
+    $('.grid-container').hide() //隱藏遊戲頁面
+    user1.gotCode = ''; //重置獲得的代碼
+    user2.gotCode = ''; //重置獲得的代碼
+    round = 1; //重置回合
+    nowUser = ((round % 2 == 1) ? user1 : user2); //重置順序
+    $(`.${user1.name}`).addClass('nowUser') //重置當前使用者
     $(`.${user2.name}`).removeClass('nowUser')
-    $('.grid-item').data('occupied', 'false');
+    $('.grid-item').data('occupied', 'false'); //重置所有格子的佔領狀態
     $('.grid-item').removeClass('bgc-pai');
     $('.grid-item').removeClass('bgc-hei');
 }
 
-function init() {
-    $(`.${user1.name}`).addClass('nowUser')
-    getScore()
-    $('.startBtn').on('click', function () {
-        $('.startPage').hide()
+function init() { //開局執行
+    $(`.${user1.name}`).addClass('nowUser') //判定使用者
+    getScore() //抓一次成績
+    $('.startBtn').on('click', function () { //綁定開始按鈕的功能
+        $('.startPage').hide() //隱藏開始頁面
     })
-    $('.restartBtn').on('click', function () {
-        $('.endPage').removeClass('bgc-hei');
+    $('.restartBtn').on('click', function () { //綁定重新開始按鈕的功能
+        $('.endPage').removeClass('bgc-hei'); //清除結算頁面的相關顯示
         $('.endPage').removeClass('bgc-pai');
         $('.endPage').removeClass('bgc-draw');
-        $('.endPage').hide()
-        $('.grid-container').show()
+        $('.endPage').hide() //隱藏結算頁面
+        $('.grid-container').show() //顯示遊戲頁面
     })
-    $('.endPage').hide()
+    $('.endPage').hide() //開局隱藏結束頁面
 }
 
-init()
+init() //開局執行
