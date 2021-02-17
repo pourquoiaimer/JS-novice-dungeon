@@ -1,51 +1,23 @@
-/**value 1 或valu 2 有三個相等
- * 
-或兩者的都不重複
-用switch寫吧
 
-選擇後就會取得value 1 跟 value 2 s
-tl  tm  tr
-cl  cm cr
-bl   bm   br
+// tl  tm  tr
+// cl  cm  cr
+// bl  bm  br
 
-value的分配方法？
 
-每次選完就會抓值
-有符合條件就會跳出勝利畫面的字串，可用alert
-勝負結果存localstorage
-
-一開始設user1跟user2還是先有兩個
-
-用grid分九格
-然後用一個值判定目前要放置的是圈或差
-增加可自選圖案？
-設計一些公共圖案（增加一個選單）
-甚至可以用字串的方式
-切換角色就是切換字串的組成，
-切換裡面的class，來改變其背景圖片
-
-讓字串切換顯示
-誰先誰後影響切換的初始值而已
-比如就一直是true或false的切換，但誰先誰後影響的是初始的true或者false值
-或者是背景？
-派大星跟海綿寶寶**/
-
-//1.調整名字並抓取紀錄填入win資料、 2.稍微延長時間  3.
-
-const winCode = {
-    count3: ['t', 'c', 'b', 'l', 'm', 'r'],
-    allGet1: ['tl', 'cm', 'br'],
-    allGet2: ['bl', 'cm', 'tr']
+const winCode = { //條列所有判定勝利所需的元素
+    count3: ['t', 'c', 'b', 'l', 'm', 'r'], //用來判定是否橫直連線的元素 
+    allGet1: ['tl', 'cm', 'br'], //斜線的勝利條件
+    allGet2: ['bl', 'cm', 'tr'] //斜線的勝利條件
 }
 
 let user1 = {
-    name: 'SpongeBob', //用name來做localstorage的資料判定，存name和對應的成績
+    name: 'user1', //用name來做localstorage的資料判定，存name和對應的成績
     pic: 'bgc-hei', //這個是選擇要使用的圖形的，先有預設比如user1就是圈然後user2就是叉
     gotCode: '',
 }
 
 let user2 = {
-    name: 'PtrickStar', //用name來做localstorage的資料判定，存name和對應的成績
+    name: 'user2', //用name來做localstorage的資料判定，存name和對應的成績
     pic: 'bgc-pai', //這個是選擇要使用的圖形的，先有預設比如user1就是圈然後user2就是叉
     gotCode: '',
 }
@@ -59,8 +31,8 @@ function getScore() {
         console.log('還沒有成績');
     }
     localStorage.setItem('score', JSON.stringify(allScore))
-    $('.SpongeBobScore').text(allScore[0])
-    $('.PtrickStarScore').text(allScore[1])
+    $('.user1Score').text(allScore[0])
+    $('.user2Score').text(allScore[1])
     // localStorage.setItem('move', JSON.stringify(moveData));
 }
 
@@ -90,33 +62,20 @@ function jugement() {
 
 function overRound() { //在jugement之後，切換到下個回合
     if (jugement()) {
-        alert(`${nowUser.name}贏了！！！！！`)
-        let i = ((nowUser.name == 'SpongeBob') ? 0 : 1)
+        let bgc = ((nowUser.name == 'user1') ? 'bgc-hei' : 'bgc-pai')
+        $('.result').text('WINNER!')
+        $('.endPage').addClass(bgc)
+        let i = ((nowUser.name == 'user1') ? 0 : 1)
         console.log(i);
         allScore[i] += 1
         localStorage.setItem('score', JSON.stringify(allScore));
-        user1.gotCode = '';
-        user2.gotCode = '';
-        let round = 1;
-        nowUser = ((round % 2 == 1) ? user1 : user2);
         getScore()
-        $(`.${user1.name}`).addClass('nowUser')
-        $(`.${user2.name}`).removeClass('nowUser')
-        $('.grid-item').data('occupied', 'false');
-        $('.grid-item').removeClass('bgc-pai');
-        $('.grid-item').removeClass('bgc-hei');
+        restart()
     } else {
-        if (countGrid() == 0) {
-            alert(`平局！重新再來～`)
-            user1.gotCode = '';
-            user2.gotCode = '';
-            round = 1;
-            nowUser = ((round % 2 == 1) ? user1 : user2);
-            $(`.${user1.name}`).addClass('nowUser')
-            $(`.${user2.name}`).removeClass('nowUser')
-            $('.grid-item').data('occupied', 'false');
-            $('.grid-item').removeClass('bgc-pai');
-            $('.grid-item').removeClass('bgc-hei');
+        if (countGrid() == 0) { //當格子沒了又沒分出勝負時，進行平手判定
+            $('.result').text('@DRAW@')
+            $('.endPage').addClass('bgc-draw')
+            restart()
         } else {
             console.log(nowUser.name);
             round += 1;
@@ -137,7 +96,6 @@ $('.grid-item').on('click', function () {
         $(this).addClass(nowUser.pic);
         let str = $(this).data('name');
         nowUser.gotCode = nowUser.gotCode + str;
-        // setTimeout(overRound, 100);
         overRound();
     }
 });
@@ -152,9 +110,34 @@ function countGrid() {
     return grid
 }
 
+function restart() {
+    $('.endPage').show()
+    $('.grid-container').hide()
+    user1.gotCode = '';
+    user2.gotCode = '';
+    round = 1;
+    nowUser = ((round % 2 == 1) ? user1 : user2);
+    $(`.${user1.name}`).addClass('nowUser')
+    $(`.${user2.name}`).removeClass('nowUser')
+    $('.grid-item').data('occupied', 'false');
+    $('.grid-item').removeClass('bgc-pai');
+    $('.grid-item').removeClass('bgc-hei');
+}
+
 function init() {
     $(`.${user1.name}`).addClass('nowUser')
     getScore()
+    $('.startBtn').on('click', function () {
+        $('.startPage').hide()
+    })
+    $('.restartBtn').on('click', function () {
+        $('.endPage').removeClass('bgc-hei');
+        $('.endPage').removeClass('bgc-pai');
+        $('.endPage').removeClass('bgc-draw');
+        $('.endPage').hide()
+        $('.grid-container').show()
+    })
+    $('.endPage').hide()
 }
 
 init()

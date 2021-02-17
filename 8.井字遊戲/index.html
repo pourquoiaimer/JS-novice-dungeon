@@ -11,26 +11,50 @@
 
 <body>
     <div class="wrap">
+        <div class="startPage">
+            <div class="start-grid-container">
+                <div class="start-grid-item">TIC</div>
+                <div class="start-grid-item bg bgc-hei"></div>
+                <div class="start-grid-item bg bgc-pai"></div>
+                <div class="start-grid-item bg bgc-pai"></div>
+                <div class="start-grid-item">TAC</div>
+                <div class="start-grid-item bg bgc-hei"></div>
+                <div class="start-grid-item bg bgc-hei"></div>
+                <div class="start-grid-item bg bgc-pai"></div>
+                <div class="start-grid-item">TOE</div>
+            </div>
+            <button class="startBtn">
+                start
+            </button>
+        </div>
         <h1>圈叉遊戲<br>海綿寶寶版</h1>
         <div class="grid-container">
-            <div class="grid-item t l" data-name="tl" data-occupied="false"></div>
-            <div class="grid-item t" data-name="tm" data-occupied="false"></div>
-            <div class="grid-item t r" data-name="tr" data-occupied="false"></div>
-            <div class="grid-item l" data-name="cl" data-occupied="false"></div>
-            <div class="grid-item" data-name="cm" data-occupied="false"></div>
-            <div class="grid-item r" data-name="cr" data-occupied="false"></div>
-            <div class="grid-item b l" data-name="bl" data-occupied="false"></div>
-            <div class="grid-item b" data-name="bm" data-occupied="false"></div>
-            <div class="grid-item b r " data-name="br" data-occupied="false"></div>
+            <div class="grid-item bg t l" data-name="tl" data-occupied="false"></div>
+            <div class="grid-item bg t" data-name="tm" data-occupied="false"></div>
+            <div class="grid-item bg t r" data-name="tr" data-occupied="false"></div>
+            <div class="grid-item bg l" data-name="cl" data-occupied="false"></div>
+            <div class="grid-item bg" data-name="cm" data-occupied="false"></div>
+            <div class="grid-item bg r" data-name="cr" data-occupied="false"></div>
+            <div class="grid-item bg b l" data-name="bl" data-occupied="false"></div>
+            <div class="grid-item bg b" data-name="bm" data-occupied="false"></div>
+            <div class="grid-item bg b r " data-name="br" data-occupied="false"></div>
         </div>
-        <div class="SpongeBob">
+        <div class="endPage bg">
+            <span class="result">
+            </span>
+            <button class="restartBtn">
+                restart
+            </button>
+        </div>
+        <div class="user1">
             <img src="./images/hei.jpg" alt="">
-            <span class="SpongeBobScore"></span>
+            <span class="user1Score"></span>
         </div>
-        <div class="PtrickStar">
+        <div class="user2">
             <img src="./images/pai.jpg" alt="">
-            <span class="PtrickStarScore"></span>
+            <span class="user2Score"></span>
         </div>
+
     </div>
 
 
